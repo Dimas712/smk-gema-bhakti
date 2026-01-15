@@ -12,7 +12,7 @@ export const metadata = {
     "Sekolah Kejuruan Jasinga",
   ],
   verification: {
-    google: "abc123XYZ",
+    google: "VJbroswWy6KUH_M0ZT_e6udWW_ehzWO7-Xdf0PZN4Dk",
   },
 
   icons: {
@@ -24,7 +24,7 @@ export const metadata = {
   openGraph: {
     title: "SMK Gema Bhakti 1 Jasinga",
     description: "Sekolah Menengah Kejuruan unggulan di Jasinga",
-    url: "https://smkgemabhakti.vercel.app",
+    url: "https://smk-gema-bhakti.vercel.app",
     siteName: "SMK Gema Bhakti 1 Jasinga",
     images: [
       {
