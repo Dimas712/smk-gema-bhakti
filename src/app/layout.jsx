@@ -4,7 +4,16 @@ import "./globals.css";
 
 export const metadata = {
   title: "SMK Gema Bhakti 1 Jasinga",
-  description: "Website Resmi SMK Gema Bhakti 1 Jasinga",
+  description: "Website Resmi SMK Gema Bhakti 1 Jasinga. Sekolah kejuruan unggulan yang mencetak lulusan kompeten, berkarakter, dan siap kerja",
+
+  keywords: [
+    "SMK Gema Bhakti 1 Jasinga",
+    "SMK Jasinga",
+    "Sekolah Kejuruan Jasinga",
+  ],
+  verification: {
+    google: "abc123XYZ",
+  },
 
   icons: {
     icon: "/smk.jpg",
@@ -15,6 +24,8 @@ export const metadata = {
   openGraph: {
     title: "SMK Gema Bhakti 1 Jasinga",
     description: "Sekolah Menengah Kejuruan unggulan di Jasinga",
+    url: "https://smkgemabhakti.vercel.app",
+    siteName: "SMK Gema Bhakti 1 Jasinga",
     images: [
       {
         url: "/smk.jpg",
@@ -24,6 +35,7 @@ export const metadata = {
       },
     ],
   },
+  
 };
 
 export default function RootLayout({ children }) {
