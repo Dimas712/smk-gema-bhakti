@@ -30,7 +30,7 @@ export default function sitemap() {
 
     // Program Keahlian / Jurusan
     {
-      url: `${baseUrl}/profil/jurusan`,
+      url: `${baseUrl}/profil/tata-tertib`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
