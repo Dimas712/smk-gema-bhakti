@@ -98,7 +98,7 @@ export default function KontakPage() {
         <div className="rounded-3xl overflow-hidden shadow-lg h-[400px]">
           <iframe
             title="Lokasi SMK Gema Bhakti 1 Jasinga"
-            src="https://www.google.com/maps?q=Jasinga+Bogor&output=embed"
+            src="https://www.google.com/maps?q=SMK+Gema+Bhakti+Jasinga&output=embed"
             className="w-full h-full border-0"
             loading="lazy"
           />
