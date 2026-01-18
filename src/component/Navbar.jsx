@@ -60,11 +60,11 @@ const Navbar = () => {
           className={`
             absolute md:static top-full left-0 w-full md:w-auto
             bg-green-700 md:bg-transparent
-            md:flex md:items-center md:gap-10
-            md:absolute md:left-1/2 md:-translate-x-1/2
+            md:flex md:items-center md:gap-8
             ${open ? "block" : "hidden"} md:block
           `}
         >
+
           {/* PROFIL */}
           <div className="md:relative">
             <button
@@ -145,6 +145,23 @@ const Navbar = () => {
               {menu.label}
             </Link>
           ))}
+
+          {/* 🔥 PPDB BUTTON */}
+          <Link
+            href="/ppdb"
+            className={`
+              block mx-6 my-2 md:mx-0 md:my-0
+              px-6 py-2 rounded-full text-center font-semibold
+              transition
+              ${pathname === "/ppdb"
+                ? "bg-yellow-400 text-green-900"
+                : "bg-yellow-300 text-green-900 hover:bg-yellow-400"}
+            `}
+            onClick={() => setOpen(false)}
+          >
+            PPDB
+          </Link>
+
         </nav>
 
         {/* RIGHT - Social Media */}
