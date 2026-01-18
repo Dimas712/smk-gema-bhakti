@@ -37,10 +37,10 @@ const kegiatanList = [
 
 export default function KegiatanPage() {
   return (
-    <main className="min-h-screen bg-gray-50 pt-24">
+    <main className="min-h-screen bg-gray-50 text-gray-800 overflow-x-hidden">
 
       {/* Header */}
-      <section className="bg-gradient-to-r from-green-600 to-emerald-700 text-white py-20 text-center">
+      <section className="bg-gradient-to-r from-green-700 text-white py-20 text-center mt-10">
         <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
           Kegiatan Sekolah
         </h1>

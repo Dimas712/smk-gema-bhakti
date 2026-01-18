@@ -41,7 +41,7 @@ export default function Home() {
             className="text-gray-600 leading-relaxed text-lg"
           >
             <span className="font-semibold text-gray-800">
-              SMAN 1 Jasinga
+              SMK Gema Bhakti 1 Jasinga
             </span>{" "}
             adalah lembaga pendidikan kejuruan yang berfokus pada pengembangan
             keterampilan siswa sesuai dengan kebutuhan dunia usaha dan industri.

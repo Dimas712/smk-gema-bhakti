@@ -1,4 +1,9 @@
+"use client"
+
 import Image from "next/image"
+import AOS from "aos"
+import "aos/dist/aos.css"
+import { useEffect } from "react"
 
 const fasilitasList = [
   {
@@ -34,13 +39,23 @@ const fasilitasList = [
 ]
 
 export default function FasilitasPage() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1200,
+      easing: "ease-out-cubic",
+      once: true,
+    })
+  }, [])
+
   return (
-    <main className="min-h-screen bg-gray-50 text-gray-800">
+    <main className="min-h-screen bg-gray-50 text-gray-800 overflow-x-hidden">
 
       {/* Header */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20 text-center">
-        <h1 className="text-4xl font-bold mb-4">Fasilitas Sekolah</h1>
-        <p className="max-w-2xl mx-auto text-blue-100">
+      <section className="bg-gradient-to-r from-green-700 text-white py-20 text-center mt-10">
+        <h1 className="text-4xl font-bold md:text-5xl mb-4" data-aos="fade-down">
+          Fasilitas Sekolah
+        </h1>
+        <p className="text-xl md:text-2xl" data-aos="fade-up">
           Fasilitas pendukung pembelajaran dan kegiatan siswa di SMK Gema Bhakti.
         </p>
       </section>

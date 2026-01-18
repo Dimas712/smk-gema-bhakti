@@ -39,8 +39,8 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3 text-sm">
               <li>📍 Jl. Pendidikan No. 123, Jasinga, Bogor</li>
-              <li>📞 <a href="https://wa.me/628xxxxxxxxxx" className="hover:text-white">08xxxxxxxxxx</a></li>
-              <li>✉️ <a href="mailto:info@smkgemabhakti.sch.id" className="hover:text-white">info@smkgemabhakti.sch.id</a></li>
+              <li>📞 <a href="https://wa.me/628xxxxxxxxxx" className="hover:text-white">081584193392</a></li>
+              <li>✉️ <a href="mailto:info@smkgemabhakti.sch.id" className="hover:text-white">smkgemabhakti_1jasinga@yahoo.com</a></li>
             </ul>
 
             {/* Social Media */}

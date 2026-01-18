@@ -3,6 +3,7 @@
 import React, { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { usePathname } from "next/navigation"
 import { Instagram, Youtube } from "lucide-react"
 
 const profilMenu = [
@@ -22,6 +23,10 @@ const menuList = [
 const Navbar = () => {
   const [open, setOpen] = useState(false)
   const [profilOpen, setProfilOpen] = useState(false)
+  const pathname = usePathname()
+
+  const isActive = (path) => pathname === path
+  const isProfilActive = pathname.startsWith("/profil")
 
   return (
     <header className="fixed top-0 w-full z-50 backdrop-blur bg-green-700/90 shadow-lg">
@@ -64,8 +69,11 @@ const Navbar = () => {
           <div className="md:relative">
             <button
               onClick={() => setProfilOpen(!profilOpen)}
-              className="flex items-center gap-1 px-6 py-3 md:p-0
-                         hover:text-yellow-300 transition text-white"
+              className={`flex items-center gap-1 px-6 py-3 md:p-0 transition
+                ${isProfilActive
+                  ? "text-yellow-300 font-semibold"
+                  : "text-white hover:text-yellow-300"}
+              `}
             >
               Profil
               <span className={`text-xs transition ${profilOpen ? "rotate-180" : ""}`}>
@@ -79,7 +87,11 @@ const Navbar = () => {
                 <Link
                   key={i}
                   href={item.link}
-                  className="block pl-10 pr-6 py-2 text-sm text-white/90"
+                  className={`block pl-10 pr-6 py-2 text-sm transition
+                    ${pathname === item.link
+                      ? "text-yellow-300 font-semibold"
+                      : "text-white/90"}
+                  `}
                   onClick={() => {
                     setProfilOpen(false)
                     setOpen(false)
@@ -96,14 +108,20 @@ const Navbar = () => {
                 hidden md:block absolute top-full left-0 mt-3
                 bg-white text-gray-800 rounded-2xl shadow-xl w-64
                 transition-all duration-200
-                ${profilOpen ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"}
+                ${profilOpen
+                  ? "opacity-100 scale-100"
+                  : "opacity-0 scale-95 pointer-events-none"}
               `}
             >
               {profilMenu.map((item, i) => (
                 <Link
                   key={i}
                   href={item.link}
-                  className="block px-5 py-3 text-sm hover:bg-gray-100"
+                  className={`block px-5 py-3 text-sm transition
+                    ${pathname === item.link
+                      ? "bg-gray-100 font-semibold text-blue-600"
+                      : "hover:bg-gray-100"}
+                  `}
                   onClick={() => setProfilOpen(false)}
                 >
                   {item.label}
@@ -117,7 +135,11 @@ const Navbar = () => {
             <Link
               key={i}
               href={menu.link}
-              className="block px-6 py-3 md:p-0 text-white hover:text-yellow-300 transition"
+              className={`block px-6 py-3 md:p-0 transition
+                ${isActive(menu.link)
+                  ? "text-yellow-300 font-semibold"
+                  : "text-white hover:text-yellow-300"}
+              `}
               onClick={() => setOpen(false)}
             >
               {menu.label}
@@ -133,7 +155,7 @@ const Navbar = () => {
             className="hover:text-yellow-300 transition"
           >
             <Instagram size={22} />
-          </a>``
+          </a>
           <a
             href="https://youtube.com"
             target="_blank"

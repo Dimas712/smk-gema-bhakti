@@ -1,37 +1,20 @@
 "use client"
 
-import { useRef } from "react"
+import {useEffect, useRef} from "react"
 import Image from "next/image"
-
-const guruStaff = [
-  {
-    nama: "Drs. Ahmad Sudirman",
-    jabatan: "Kepala Sekolah",
-    foto: "/guru/kepsek.jpg",
-  },
-  {
-    nama: "Siti Aminah, S.Pd",
-    jabatan: "Wakil Kepala Sekolah",
-    foto: "/guru/wakasek.jpg",
-  },
-  {
-    nama: "Budi Santoso, S.Kom",
-    jabatan: "Wakasek Kurikulum",
-    foto: "/guru/guru-rpl.jpg",
-  },
-  {
-    nama: "Rina Lestari, S.Pd",
-    jabatan: "Wakasek Kesiswaan",
-    foto: "/guru/guru-mm.jpg",
-  },
-  {
-    nama: "Andi Pratama",
-    jabatan: "Staff Tata Usaha",
-    foto: "/guru/staff-tu.jpg",
-  },
-]
+import guruStaf from "../../../data/guruStaf"
+import "aos/dist/aos.css"
+import AOS from "aos"
 
 export default function GuruStaffPage() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1200,
+      easing: "ease-out-cubic",
+      once: true,
+    })
+  }, [])
+
   const sliderRef = useRef(null)
 
   const scrollLeft = () => {
@@ -49,12 +32,14 @@ export default function GuruStaffPage() {
   }
 
   return (
-    <main className="min-h-screen bg-gray-50 text-gray-800">
+    <main className="min-h-screen bg-gray-50 text-gray-800 overflow-x-hidden">
 
       {/* Header */}
-      <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20 text-center">
-        <h1 className="text-4xl font-bold mb-4">Guru & Staff</h1>
-        <p className="max-w-2xl mx-auto text-blue-100">
+      <section className="bg-gradient-to-r from-green-700 text-white py-20 text-center mt-10">
+        <h1 className="ttext-4xl font-bold md:text-5xl mb-4" data-aos="fade-down">
+          Guru & Staff
+        </h1>
+        <p className="text-xl md:text-2xl" data-aos="fade-up">
           Tenaga pendidik dan kependidikan SMK Gema Bhakti yang profesional
           dan berdedikasi.
         </p>
@@ -90,7 +75,7 @@ export default function GuruStaffPage() {
           ref={sliderRef}
           className="flex gap-6 overflow-x-auto scroll-smooth scrollbar-hide px-4"
         >
-          {guruStaff.map((item, index) => (
+          {guruStaf.map((item, index) => (
             <div
               key={index}
               className="min-w-[260px] bg-white rounded-3xl shadow-md
