@@ -24,7 +24,7 @@ export const metadata = {
   openGraph: {
     title: "SMK Gema Bhakti 1 Jasinga",
     description: "Sekolah Menengah Kejuruan unggulan di Jasinga",
-    url: "https://smk-gema-bhakti.vercel.app",
+    url: "https://smkgb1jasinga.vercel.app",
     siteName: "SMK Gema Bhakti 1 Jasinga",
     images: [
       {
