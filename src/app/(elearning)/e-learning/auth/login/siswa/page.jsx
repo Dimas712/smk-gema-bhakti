@@ -1,4 +1,6 @@
-import LoginCard from "../../../../../../component/auth/LoginCard";
+"user client";
+
+import LoginCard from "@/component/auth/LoginCard";
 
 export default function LoginSiswaPage() {
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import LoginCard from "../../../../../component/auth/LoginCard";
+import LoginCard from "@/component/auth/LoginCard";
 
 export default function LoginAdminPage() {
   return (
