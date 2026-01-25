@@ -3,7 +3,7 @@
 import Image from "next/image"
 
 const galeriList = [
-  { src: "/galeri/1.jpg", title: "Kegiatan Upacara" },
+  { src: "/LDKS.jpeg", title: "LDKS (Latihan Dasar Kepemimpinan Siswa)" },
   { src: "/galeri/2.jpg", title: "Praktik Kejuruan" },
   { src: "/galeri/3.jpg", title: "Kunjungan Industri" },
   { src: "/galeri/4.jpg", title: "Ekstrakurikuler" },

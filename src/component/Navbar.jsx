@@ -148,18 +148,18 @@ const Navbar = () => {
 
           {/* 🔥 PPDB BUTTON */}
           <Link
-            href="/ppdb"
+            href="/e-learning"
             className={`
               block mx-6 my-2 md:mx-0 md:my-0
               px-6 py-2 rounded-full text-center font-semibold
               transition
-              ${pathname === "/ppdb"
+              ${pathname === "/e-elearning"
                 ? "bg-yellow-400 text-green-900"
                 : "bg-yellow-300 text-green-900 hover:bg-yellow-400"}
             `}
             onClick={() => setOpen(false)}
           >
-            PPDB
+            E-Learning
           </Link>
 
         </nav>

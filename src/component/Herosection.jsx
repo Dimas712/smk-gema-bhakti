@@ -6,16 +6,15 @@ import AOS from "aos"
 import "aos/dist/aos.css"
 
 const images = [
-  "/hero/hero1.jpg",
-  "/hero/hero2.jpg",
-  "/hero/hero3.jpg",
+  "/Banner1.jpg",
+  "/LDKS.jpeg",
+  "/Banner3.jpg",
 ]
 
 const HeroSection = () => {
   const [current, setCurrent] = useState(0)
 
   useEffect(() => {
-    // Init AOS
     AOS.init({
       duration: 1200,
       easing: "ease-out-cubic",
@@ -24,82 +23,70 @@ const HeroSection = () => {
 
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length)
-    }, 5000)
+    }, 6000)
 
     return () => clearInterval(interval)
   }, [])
 
   return (
-      <section className="relative min-h-[85vh] overflow-hidden text-white">
+    <section className="relative min-h-screen overflow-hidden mt-10">
 
-    {/* Background Slider */}
-    {images.map((img, index) => (
-      <Image
-        key={index}
-        src={img}
-        alt="Hero Background"
-        fill
-        priority={index === 0}
-        className={`
-          object-cover transition-opacity duration-1000
-          ${index === current ? "opacity-100" : "opacity-0"}
-          blur-sm scale-105
-        `}
-      />
-    ))}
+      {/* Background Slider */}
+      {images.map((img, index) => (
+        <Image
+          key={index}
+          src={img}
+          alt="Hero Background"
+          fill
+          priority={index === 0}
+          className={`object-cover transition-opacity duration-1000 
+          ${index === current ? "opacity-100" : "opacity-0"}`}
+        />
+      ))}
 
-    {/* Gradient Overlay */}
-    <div className="absolute inset-0 bg-gradient-to-r 
-      from-yellow-500/80 via-amber-600/70 to-orange-700/80">
-    </div>
+      {/* Dark Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/80" />
 
-    {/* Content */}
-    <div className="relative z-10 flex items-center justify-center min-h-[85vh] pt-28 px-6">
-      <div className="text-center">
-
-        <h2
-          data-aos="fade-up"
-          className="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-lg"
-        >
-          Selamat Datang di <br />
-          <span className="text-yellow-200">
-            SMK Gema Bhakti 1 Jasinga
-          </span>
-        </h2>
-
-        <p
-          data-aos="fade-up"
-          data-aos-delay="200"
-          className="max-w-2xl mx-auto text-lg md:text-xl text-yellow-100 leading-relaxed"
-        >
-          Sekolah Menengah Kejuruan yang berkomitmen mencetak lulusan
-          berkompeten, berkarakter, dan siap kerja.
-        </p>
-
+      {/* Content */}
+      <div className="relative z-10 flex items-center justify-center min-h-screen px-6">
         <div
-          data-aos="zoom-in"
-          data-aos-delay="400"
-          className="mt-10 flex justify-center gap-4"
+          data-aos="fade-up"
+          className="max-w-4xl text-center"
         >
-          <a
-            href="/profil/sejarah"
-            className="px-8 py-3 rounded-full bg-yellow-400 text-gray-900
-                       font-semibold hover:bg-yellow-300 transition"
-          >
-            Profil Sekolah
-          </a>
-          <a
-            href="/kontak"
-            className="px-8 py-3 rounded-full border border-white/80
-                       hover:bg-white hover:text-gray-900 transition"
-          >
-            Hubungi Kami
-          </a>
-        </div>
 
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-6 text-white leading-tight">
+            Selamat Datang di <br />
+            <span className="bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent">
+              SMK Gema Bhakti 1 Jasinga
+            </span>
+          </h1>
+
+          <p className="text-gray-200 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+            Sekolah Menengah Kejuruan unggulan yang berkomitmen mencetak lulusan
+            berkompeten, berkarakter, dan siap bersaing di dunia industri.
+          </p>
+
+          <div className="mt-10 flex flex-wrap justify-center gap-4">
+            <a
+              href="/profil/sejarah"
+              className="px-8 py-3 rounded-full bg-gradient-to-r from-yellow-400 to-orange-400
+                         text-gray-900 font-semibold shadow-lg hover:scale-105 transition"
+            >
+              Profil Sekolah
+            </a>
+
+            <a
+              href="/kontak"
+              className="px-8 py-3 rounded-full border border-white/40 text-white
+                         hover:bg-white hover:text-gray-900 transition"
+            >
+              Hubungi Kami
+            </a>
+          </div>
+
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
   )
 }
 

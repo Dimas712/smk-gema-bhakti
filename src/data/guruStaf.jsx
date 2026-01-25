@@ -112,7 +112,7 @@ const guruStaf = [
  {
     nama: "Dimas Alip Faturrohim, S.Kom",
     jabatan: "Guru Ekonomi Bisnis & Administrasi Perkantoran",
-    foto: "/guru/staff-tu.jpg",
+    foto: "/guru/Dimas.jpeg",
   },
    {
     nama: "Sarmudin",
