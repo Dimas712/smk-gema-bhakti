@@ -5,7 +5,7 @@ export default function DashboardSiswaPage() {
   return (
     <>
       {/* Absensi */}
-      <div className="bg-white rounded-2xl shadow p-6 text-center text-gray-700 mt-10">
+      <div className="bg-white rounded-2xl shadow p-6 text-center text-gray-700 mt-20">
         <h2 className="text-lg font-semibold mb-4">Absensi</h2>
 
         <div className="max-w-xs mx-auto space-y-4">

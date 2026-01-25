@@ -4,7 +4,7 @@ export default function MateriGuruPage() {
   return (
     <>
       {/* HEADER */}
-      <div className="bg-white rounded-2xl shadow p-6 mt-8">
+      <div className="bg-white rounded-2xl shadow p-6 mt-16">
         <h2 className="text-xl font-semibold text-gray-800">
           Materi Pembelajaran
         </h2>

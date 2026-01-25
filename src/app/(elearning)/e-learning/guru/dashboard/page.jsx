@@ -47,7 +47,7 @@ export default function DashboardGuru() {
   return (
     <div className="space-y-8">
       {/* Header */}
-      <div className="mt-8">
+      <div className="mt-20">
         <h1 className="text-2xl font-bold text-gray-800">
           Dashboard Guru
         </h1>

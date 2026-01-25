@@ -57,7 +57,7 @@ export default function EditMateriGuru() {
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow p-6 max-w-3xl text-gray-700 mt-8">
+    <div className="bg-white rounded-2xl shadow p-6 max-w-3xl text-gray-700 mt-16">
       <h2 className="text-lg font-semibold mb-6">Edit Materi</h2>
 
       <form onSubmit={handleSubmit} className="space-y-5">
