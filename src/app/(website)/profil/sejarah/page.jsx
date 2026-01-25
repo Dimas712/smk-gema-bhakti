@@ -55,7 +55,7 @@ export default function SejarahSingkat() {
           {/* Timeline sederhana */}
           <div className="mt-10 grid md:grid-cols-3 gap-6 text-center">
             <div className="bg-blue-50 p-6 rounded-2xl">
-              <p className="text-2xl font-bold text-blue-600">20XX</p>
+              <p className="text-2xl font-bold text-blue-600">2013</p>
               <p className="text-gray-600 mt-2">Tahun Berdiri</p>
             </div>
             <div className="bg-blue-50 p-6 rounded-2xl">
@@ -63,7 +63,7 @@ export default function SejarahSingkat() {
               <p className="text-gray-600 mt-2">Program Keahlian</p>
             </div>
             <div className="bg-blue-50 p-6 rounded-2xl">
-              <p className="text-2xl font-bold text-blue-600">Ratusan</p>
+              <p className="text-2xl font-bold text-blue-600">Ribuan</p>
               <p className="text-gray-600 mt-2">Alumni</p>
             </div>
           </div>
