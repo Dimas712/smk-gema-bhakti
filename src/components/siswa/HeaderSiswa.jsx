@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import ProfilDropdown from "../../component/ProfilDropdown";
+import ProfilDropdown from "../../components/ProfilDropdown";
 
 export default function HeaderSiswa() {
   const [open, setOpen] = useState(false);
