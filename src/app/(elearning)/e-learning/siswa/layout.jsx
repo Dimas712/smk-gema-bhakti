@@ -1,5 +1,5 @@
-import SidebarSiswa from "@/component/siswa/SidebarSiswa";
-import HeaderSiswa from "@/component/siswa/HeaderSiswa";
+import SidebarSiswa from "@/components/siswa/SidebarSiswa";
+import HeaderSiswa from "@/components/siswa/HeaderSiswa";
 
 export default function SiswaLayout({ children }) {
   return (
