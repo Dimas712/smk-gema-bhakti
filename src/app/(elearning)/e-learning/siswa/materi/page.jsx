@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import MapelCard from "@/component/siswa/MapelCard";
+import MapelCard from "@/components/siswa/MapelCard";
 
 export default function MateriPage() {
   const router = useRouter();

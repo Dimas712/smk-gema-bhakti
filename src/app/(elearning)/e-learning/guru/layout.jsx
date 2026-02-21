@@ -1,5 +1,5 @@
-import HeaderGuru from "@/component/guru/HeaderGuru";
-import SidebarGuru from "@/component/guru/SidebarGuru";
+import HeaderGuru from "@/components/guru/HeaderGuru";
+import SidebarGuru from "@/components/guru/SidebarGuru";
 
 export default function Layout({ children }) {
   return (

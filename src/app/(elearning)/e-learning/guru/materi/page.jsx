@@ -1,4 +1,4 @@
-import TabelMateriGuru from "@/component/guru/TabelMateriGuru";
+import TabelMateriGuru from "@/components/guru/TabelMateriGuru";
 
 export default function MateriGuruPage() {
   return (

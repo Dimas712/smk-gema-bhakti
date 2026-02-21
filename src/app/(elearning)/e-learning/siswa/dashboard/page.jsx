@@ -1,5 +1,5 @@
-import MapelCard from "@/component/siswa/MapelCard";
-import TabelMateri from "@/component/siswa/TabelMateri";
+import MapelCard from "@/components/siswa/MapelCard";
+import TabelMateri from "@/components/siswa/TabelMateri";
 
 export default function DashboardSiswaPage() {
   return (

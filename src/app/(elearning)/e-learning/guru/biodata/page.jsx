@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import BiodataTab from "@/component/siswa/BiodataTab";
+import BiodataTab from "@/components/siswa/BiodataTab";
 
 export default function BiodataSiswaPage() {
   const [tab, setTab] = useState("biodata");
