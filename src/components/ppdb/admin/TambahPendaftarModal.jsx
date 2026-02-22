@@ -97,7 +97,7 @@ export default function TambahPendaftarModal({ open, onClose, onSubmit }) {
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-xl font-bold">Tambah Pendaftar</h2>
-          <button onClick={onClose}>
+          <button onClick={onClose} className="cursor-pointer">
             <X />
           </button>
         </div>
@@ -168,7 +168,7 @@ export default function TambahPendaftarModal({ open, onClose, onSubmit }) {
             <button
               type="button"
               onClick={onClose}
-              className="px-5 py-2.5 rounded-xl border text-gray-700 hover:bg-gray-100"
+              className="px-5 py-2.5 rounded-xl border text-gray-700 hover:bg-gray-100 cursor-pointer"
             >
               Batal
             </button>
@@ -176,7 +176,7 @@ export default function TambahPendaftarModal({ open, onClose, onSubmit }) {
             <button
               type="submit"
               disabled={loading}
-              className="px-5 py-2.5 rounded-xl bg-green-600 text-white hover:bg-green-700 shadow disabled:bg-gray-400"
+              className="px-5 py-2.5 rounded-xl bg-green-600 text-white hover:bg-green-700 shadow disabled:bg-gray-400 cursor-pointer"
             >
               {loading ? "Menyimpan..." : "Simpan"}
             </button>

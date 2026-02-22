@@ -17,6 +17,14 @@ export async function getPendaftarById(id) {
 }
 
 // ==========================
+// GET LATEST PENDAFTAR
+// ==========================
+export async function getLatestPendaftar() {
+  const res = await api.get("/pendaftar/latest");
+  return res.data;
+}
+
+// ==========================
 // CREATE
 // ==========================
 export async function createPendaftar(data) {

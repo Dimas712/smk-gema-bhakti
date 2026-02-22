@@ -4,6 +4,9 @@ import { X } from "lucide-react";
 
 export default function DetailPendaftarModal({ open, onClose, data }) {
   if (!open || !data) return null;
+  const getFile = (jenis) => {
+  return data.berkas?.find(b => b.jenis_berkas === jenis)?.path;
+};
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -58,11 +61,11 @@ export default function DetailPendaftarModal({ open, onClose, data }) {
           {/* BERKAS */}
           <Section title="Berkas Pendaftaran">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <FileItem label="Kartu Keluarga" file={data.kk} />
-              <FileItem label="Akta Kelahiran" file={data.akta} />
-              <FileItem label="Ijazah / SKL" file={data.ijazah} />
-              <FileItem label="Rapor" file={data.rapor} />
-              <FileItem label="Pas Foto" file={data.foto} />
+              <FileItem label="Kartu Keluarga" file={getFile("kk")} />
+              <FileItem label="Akta Kelahiran" file={getFile("akta")} />
+              <FileItem label="Ijazah / SKL" file={getFile("ijazah")} />
+              <FileItem label="Rapor" file={getFile("rapor")} />
+              <FileItem label="Pas Foto" file={getFile("foto")} />
             </div>
           </Section>
 
@@ -121,19 +124,53 @@ function Item({ label, value }) {
 }
 
 function FileItem({ label, file }) {
+  if (!file) {
+    return (
+      <div>
+        <p className="text-gray-500 text-xs mb-1">{label}</p>
+        <p className="text-gray-400">Belum diunggah</p>
+      </div>
+    );
+  }
+
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/${file}`;
+  const isImage = file.match(/\.(jpg|jpeg|png|webp)$/i);
+  const isPDF = file.match(/\.pdf$/i);
+
   return (
     <div>
-      <p className="text-gray-500 text-xs mb-1">{label}</p>
-      {file ? (
+      <p className="text-gray-500 text-xs mb-2">{label}</p>
+
+      {/* Preview Gambar */}
+      {isImage && (
+        <img
+          src={url}
+          alt={label}
+          className="w-32 h-40 object-cover rounded-lg border cursor-pointer hover:scale-105 transition"
+          onClick={() => window.open(url, "_blank")}
+        />
+      )}
+
+      {/* Link PDF */}
+      {isPDF && (
         <a
-          href={file}
+          href={url}
           target="_blank"
           className="text-green-600 font-medium hover:underline"
         >
-          Lihat Berkas
+          Buka PDF
         </a>
-      ) : (
-        <p className="text-gray-400">Belum diunggah</p>
+      )}
+
+      {/* Fallback selain gambar/pdf */}
+      {!isImage && !isPDF && (
+        <a
+          href={url}
+          target="_blank"
+          className="text-green-600 font-medium hover:underline"
+        >
+          Lihat File
+        </a>
       )}
     </div>
   );
