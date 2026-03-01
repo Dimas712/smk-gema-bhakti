@@ -35,7 +35,7 @@ export default function GuruStaffPage() {
     <main className="min-h-screen bg-gray-50 text-gray-800 overflow-x-hidden">
 
       {/* Header */}
-      <section className="bg-gradient-to-r from-green-700 text-white py-20 text-center mt-10">
+      <section className="bg-gradient-to-r from-green-700 text-white py-20 text-center">
         <h1 className="ttext-4xl font-bold md:text-5xl mb-4" data-aos="fade-down">
           Guru & Staff
         </h1>

@@ -46,22 +46,21 @@ export default function DashboardPendaftarPage() {
     }, [status]);
 
     return (
-        <div className="min-h-screen bg-gray-50 flex">
+        <div className="min-h-screen bg-gray-50">
+            <main className="min-w-0 overflow-y-auto">
 
-            {/* Main Content */}
-            <main className="flex-1 min-w-0 overflow-y-auto lg:ml-64">
-
-                <div className="p-6 lg:p-8 max-w-5xl mx-auto space-y-8">
+                <div className="p-6 lg:p-8 max-w-5xl mx-auto space-y-8 text-gray-700">
                     <h1 className="text-3xl font-bold">
                         Halo, {applicant.name}
                     </h1>
 
                     {/* Status */}
                     <div
-                        className={`rounded-2xl p-6 border ${status === "Terverifikasi"
-                            ? "bg-green-50 border-green-200"
-                            : "bg-yellow-50 border-orange-200"
-                            }`}
+                        className={`rounded-2xl p-6 border ${
+                            status === "Terverifikasi"
+                                ? "bg-green-50 border-green-200"
+                                : "bg-yellow-50 border-orange-200"
+                        }`}
                     >
                         <div className="flex items-center gap-3 text-2xl font-bold">
                             {status === "Terverifikasi" ? (

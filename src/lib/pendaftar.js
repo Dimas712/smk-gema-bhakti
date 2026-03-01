@@ -70,3 +70,15 @@ export async function verifikasiPendaftar(id, status, alasan_tolak = null) {
   });
   return res.data;
 }
+
+// ==========================
+// LOGIN PENDAFTAR
+// ==========================
+export async function loginPendaftar(no_pendaftaran, password) {
+  const res = await api.post("/auth/login-pendaftar", {
+    no_pendaftaran,
+    password,
+  });
+
+  return res.data;
+}

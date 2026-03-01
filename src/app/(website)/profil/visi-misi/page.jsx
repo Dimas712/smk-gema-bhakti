@@ -15,7 +15,7 @@ const VisiMisiPage = () => {
 
   return (
     <main className="min-h-screen bg-gray-50 text-gray-800 overflow-x-hidden">
-        <section className='bg-gradient-to-r from-green-700 text-white py-20 text-center mt-10'>
+        <section className='bg-gradient-to-r from-green-700 text-white py-20 text-center'>
             <h1 className="text-4xl font-bold md:text-5xl mb-4" data-aos="fade-down">
                 Visi dan Misi Sekolah
             </h1>

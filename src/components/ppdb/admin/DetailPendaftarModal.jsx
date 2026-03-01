@@ -35,6 +35,7 @@ export default function DetailPendaftarModal({ open, onClose, data }) {
           {/* DATA PRIBADI */}
           <Section title="Data Pribadi">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <Item label="No Pendaftaran" value={data.no_pendaftaran}/>
               <Item label="Nama Lengkap" value={data.nama} />
               <Item label="NISN" value={data.nisn} />
               <Item label="NIK" value={data.nik} />

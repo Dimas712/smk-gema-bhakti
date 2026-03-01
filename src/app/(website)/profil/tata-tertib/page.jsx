@@ -17,7 +17,7 @@ export default function TataTertibPage() {
     <main className="min-h-screen bg-gray-50 text-gray-800 overflow-x-hidden">
 
       {/* Header */}
-      <section className="bg-gradient-to-r from-green-700 py-20 text-white text-center mt-10">
+      <section className="bg-gradient-to-r from-green-700 py-20 text-white text-center">
         <h1
           data-aos="fade-down"
           className="text-4xl md:text-5xl font-extrabold mb-4"

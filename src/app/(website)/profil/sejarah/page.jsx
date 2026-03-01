@@ -14,7 +14,7 @@ export default function SejarahSingkat() {
   }, [])
 
   return (
-    <main className="min-h-screen bg-gray-50 text-gray-800 mt-15 overflow-x-hidden">
+    <main className="min-h-screen bg-gray-50 text-gray-800 overflow-x-hidden">
 
       {/* Header */}
       <section className="bg-gradient-to-r from-green-700 py-20 text-center py-20 text-white">

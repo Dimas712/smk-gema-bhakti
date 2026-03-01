@@ -3,6 +3,7 @@
 import { X } from "lucide-react";
 import { useState } from "react";
 import { createPendaftar } from "@/lib/pendaftar";
+import Swal from "sweetalert2";
 
 export default function TambahPendaftarModal({ open, onClose, onSubmit }) {
   const initialForm = {
@@ -16,6 +17,8 @@ export default function TambahPendaftarModal({ open, onClose, onSubmit }) {
     nama_ayah: "",
     nama_ibu: "",
     no_hp: "",
+    no_pendaftaran: "",
+    password: "",
     kk: null,
     akta: null,
     ijazah: null,
@@ -34,6 +37,12 @@ export default function TambahPendaftarModal({ open, onClose, onSubmit }) {
   const handleFile = (e) =>
     setForm({ ...form, [e.target.name]: e.target.files[0] });
 
+  const generateNoPendaftaran = () => {
+    const year = new Date().getFullYear();
+    const random = Math.floor(100 + Math.random() * 900);
+    return `PPDB-${year}-${random}`;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -41,19 +50,21 @@ export default function TambahPendaftarModal({ open, onClose, onSubmit }) {
     try {
       const formData = new FormData();
 
+      // Generate otomatis
+      const no_pendaftaran = generateNoPendaftaran();
+      const password = form.nisn; // password = NISN
+
+      // DATA LOGIN
+      formData.append("no_pendaftaran", no_pendaftaran);
+      formData.append("password", password);
+
       // DATA PRIBADI
       formData.append("nama", form.nama);
       formData.append("nisn", form.nisn);
       formData.append("nik", form.nik);
       formData.append("tempat_lahir", form.tempat_lahir);
       formData.append("tgl_lahir", form.tgl_lahir);
-
-      formData.append(
-        "jk",
-        form.jk === "L" ? "Laki-laki" : "Perempuan"
-      );
-
-      // SEKOLAH
+      formData.append("jk", form.jk);
       formData.append("sekolah_asal", form.sekolah_asal);
 
       // ORTU
@@ -68,21 +79,31 @@ export default function TambahPendaftarModal({ open, onClose, onSubmit }) {
       if (form.rapor) formData.append("rapor", form.rapor);
       if (form.foto) formData.append("foto", form.foto);
 
-      // KIRIM KE API
       await createPendaftar(formData);
 
-      // Reload data parent
-      if (onSubmit) onSubmit();
+    // SUCCESS POPUP
+    Swal.fire({
+      icon: "success",
+      title: "Berhasil!",
+      text: "Pendaftar berhasil ditambahkan",
+      confirmButtonColor: "#16a34a",
+    });
 
-      // Reset form
-      setForm(initialForm);
+    if (onSubmit) onSubmit();
+    setForm(initialForm);
+    onClose();
 
-      // Tutup modal
-      onClose();
+  } catch (error) {
+    console.error("Error tambah pendaftar:", error);
 
-    } catch (error) {
-      console.error("Error tambah pendaftar:", error);
-      alert("Gagal menambahkan pendaftar");
+      // ERROR POPUP
+      Swal.fire({
+        icon: "error",
+        title: "Gagal!",
+        text: "Gagal menambahkan pendaftar",
+        confirmButtonColor: "#dc2626",
+      });
+
     } finally {
       setLoading(false);
     }
