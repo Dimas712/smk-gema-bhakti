@@ -6,7 +6,7 @@ import AOS from "aos"
 import "aos/dist/aos.css"
 
 const images = [
-  "/Banner1.jpg",
+  "/Banner1.jpeg",
   "/LDKS.jpeg",
   "/Banner3.jpg",
 ]
