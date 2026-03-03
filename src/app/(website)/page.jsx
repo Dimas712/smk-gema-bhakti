@@ -101,20 +101,15 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-10">
             {[
               {
-                title: "Teknik Komputer & Jaringan",
+                title: "Administrasi Perkantoran",
                 desc: "Instalasi jaringan, server, keamanan, dan troubleshooting.",
                 badge: "Networking",
               },
               {
-                title: "Rekayasa Perangkat Lunak",
+                title: "Ekonomi Bisnis",
                 desc: "Pemrograman, website, aplikasi, dan sistem informasi.",
                 badge: "Coding",
-              },
-              {
-                title: "Multimedia",
-                desc: "Desain grafis, video editing, animasi, dan konten kreatif.",
-                badge: "Creative",
-              },
+              }
             ].map((item, index) => (
               <div
                 key={index}

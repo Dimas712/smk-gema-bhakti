@@ -67,7 +67,7 @@ const Navbar = () => {
               scrolled ? "text-gray-800" : "text-white"
             }`}
           >
-            SMK Gema Bhakti 1 Jasinga
+            SMK Gema BHAKTI 1 JASINGA
           </span>
         </Link>
 
