@@ -81,16 +81,15 @@ export default function GuruStaffPage() {
               className="min-w-[260px] bg-white rounded-3xl shadow-md
                          hover:shadow-xl transition overflow-hidden text-center"
             >
-            <div className="relative w-full h-64 bg-gradient-to-br from-gray-100 to-gray-200 
-                            flex items-center justify-center p-4">
-              <div className="relative w-full h-full rounded-2xl overflow-hidden bg-white">
-                <Image
-                  src={item.foto}
-                  alt={item.nama}
-                  fill
-                  className="object-contain p-2"
-                />
-              </div>
+            <div className="min-w-[260px] bg-white rounded-3xl shadow-md hover:shadow-xl transition overflow-hidden text-center">
+            <div className="relative w-full h-64 overflow-hidden">
+              <Image
+                src={item.foto}
+                alt={item.nama}
+                fill
+                className="object-cover"
+              />
+            </div>
             </div>
 
               <div className="p-6">

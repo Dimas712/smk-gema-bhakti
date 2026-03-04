@@ -2,7 +2,7 @@ const guruStaf = [
   {
     nama: "Arlianingsih, S.Pd",
     jabatan: "Kepala Sekolah",
-    foto: "/guru/kepsek.jpg",
+    foto: "/guru/Bu_Arlia.jpeg",
   },
   {
     nama: "Sarji, S.Pd, MM",
