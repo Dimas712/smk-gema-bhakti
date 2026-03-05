@@ -40,7 +40,7 @@ const Footer = () => {
             <ul className="space-y-3 text-sm">
               <li>📍 Jl. Pendidikan No. 123, Jasinga, Bogor</li>
               <li>📞 <a href="https://wa.me/6285716041690" className="hover:text-white">085716041690</a></li>
-              <li>✉️ <a href="mailto:info@smkgemabhakti.sch.id" className="hover:text-white">smkgemabhakti_1jasinga@yahoo.com</a></li>
+              <li>✉️ <a href="mailto:info@smkgemabhakti.sch.id" className="hover:text-white">gemabhakti1@gmail.com</a></li>
             </ul>
 
             {/* Social Media */}

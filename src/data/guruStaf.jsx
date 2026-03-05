@@ -80,7 +80,7 @@ const guruStaf = [
     foto: "/guru/staff-tu.jpg",
   },
  {
-    nama: "Isti Qodariah, S.Akt",
+    nama: "Isti Qodariah, S.Ak",
     jabatan: "Otomatisasi Tata Kelola Keuangan & Sejarah Indonesia",
     foto: "/guru/staff-tu.jpg",
   },
@@ -90,7 +90,7 @@ const guruStaf = [
     foto: "/guru/staff-tu.jpg",
   },
  {
-    nama: "Ayu Hidayati, S.Pd",
+    nama: "Ayu Hidayati",
     jabatan: "Guru Bahasa Indonesia, PKN, & Seni Budaya dan Keterampilan",
     foto: "/guru/staff-tu.jpg",
   },
@@ -120,12 +120,12 @@ const guruStaf = [
     foto: "/guru/staff-tu.jpg",
   },
  {
-    nama: "Sopian",
+    nama: "Sopiyan",
     jabatan: "Petugas Keamanan Sekolah",
     foto: "/guru/staff-tu.jpg",
   },
  {
-    nama: "Miftah Falah",
+    nama: "Miftahul Fatah",
     jabatan: "TU",
     foto: "/guru/staff-tu.jpg",
   },
