@@ -101,14 +101,9 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-10">
             {[
               {
-                title: "Administrasi Perkantoran",
+                title: "Manajemen Perkantoran & Layanan Bisnis (MPLB)",
                 desc: "Instalasi jaringan, server, keamanan, dan troubleshooting.",
                 badge: "Networking",
-              },
-              {
-                title: "Ekonomi Bisnis",
-                desc: "Pemrograman, website, aplikasi, dan sistem informasi.",
-                badge: "Coding",
               }
             ].map((item, index) => (
               <div

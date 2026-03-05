@@ -55,7 +55,7 @@ const guruStaf = [
     foto: "/guru/staff-tu.jpg",
   },
  {
-    nama: "Aryuningsing, S.Mat",
+    nama: "Aryunisih, S.Mat",
     jabatan: "Guru Matematika",
     foto: "/guru/staff-tu.jpg",
   },

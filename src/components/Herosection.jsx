@@ -57,7 +57,7 @@ const HeroSection = () => {
           <h1 className="text-4xl md:text-6xl font-extrabold mb-6 text-white leading-tight">
             Selamat Datang di <br />
             <span className="bg-gradient-to-r from-yellow-300 to-orange-400 bg-clip-text text-transparent">
-              SMK Gema Bhakti 1 Jasinga
+              SMK GEMA BHAKTI 1 JASINGA
             </span>
           </h1>
 
