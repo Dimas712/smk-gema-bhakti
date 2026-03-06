@@ -7,7 +7,7 @@ export default function KontakPage() {
     <main className="min-h-screen bg-gray-50 text-gray-800">
 
       {/* Header */}
-      <section className="bg-gradient-to-r from-green-700 to-green-800 text-white py-20 text-center mt-16">
+      <section className="bg-gradient-to-r from-green-700 to-green-800 text-white py-20 text-center">
         <h1 className="text-4xl md:text-5xl font-bold mb-4">
           Kontak Kami
         </h1>
