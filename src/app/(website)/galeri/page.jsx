@@ -15,7 +15,7 @@ const galeriList = [
 
 export default function GaleriPage() {
   return (
-    <main className="min-h-screen bg-gray-50 pt-24">
+    <main className="min-h-screen bg-gray-50">
 
       {/* Header */}
       <section className="bg-gradient-to-r from-green-600 to-emerald-700 text-white py-20 text-center">

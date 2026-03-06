@@ -40,7 +40,7 @@ export default function KegiatanPage() {
     <main className="min-h-screen bg-gray-50 text-gray-800 overflow-x-hidden">
 
       {/* Header */}
-      <section className="bg-gradient-to-r from-green-700 text-white py-20 text-center mt-10">
+      <section className="bg-gradient-to-r from-green-700 text-white py-20 text-center">
         <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
           Kegiatan Sekolah
         </h1>
