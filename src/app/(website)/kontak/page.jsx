@@ -35,12 +35,12 @@ export default function KontakPage() {
 
             <div className="flex items-center gap-4">
               <Phone className="text-green-700" />
-              <p>081584193392</p>
+              <p>085716041690</p>
             </div>
 
             <div className="flex items-center gap-4">
               <Mail className="text-green-700" />
-              <p>smkgemabhakti_1jasinga@yahoo.com</p>
+              <p>gemabhakti1@gmail.com</p>
             </div>
 
             <div className="flex items-center gap-4">
