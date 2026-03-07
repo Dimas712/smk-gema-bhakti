@@ -9,7 +9,7 @@ export default function ELearningPage() {
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4">
             E-Learning
             <span className="block text-green-700">
-              SMK Gema Bhakti 1 Jasinga
+              SMK GEMA BHAKTI 1 JASINGA
             </span>
           </h1>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
