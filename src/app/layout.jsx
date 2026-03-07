@@ -1,7 +1,7 @@
 import "./globals.css";
 
 export const metadata = {
-  metadataBase: new URL("https://smkgb1jasinga.vercel.app"),
+  metadataBase: new URL("https://smkgemabhakti1jasinga.vercel.app"),
 
   title: {
     default: "SMK Gema Bhakti 1 Jasinga",
@@ -48,7 +48,7 @@ export const metadata = {
   },
 
   alternates: {
-    canonical: "https://smkgb1jasinga.vercel.app",
+    canonical: "https://smkgemabhakti1jasinga.vercel.app",
   },
 
   icons: {
@@ -61,7 +61,7 @@ export const metadata = {
     title: "SMK Gema Bhakti 1 Jasinga | SMK & Elearning Jasinga",
     description:
       "Website resmi SMK Gema Bhakti 1 Jasinga. Info sekolah, jurusan, PPDB, dan Elearning tersedia lengkap.",
-    url: "https://smkgb1jasinga.vercel.app",
+    url: "https://smkgemabhakti1jasinga.vercel.app",
     siteName: "SMK Gema Bhakti 1 Jasinga",
     locale: "id_ID",
     type: "website",
@@ -95,8 +95,8 @@ export default function RootLayout({ children }) {
               "@context": "https://schema.org",
               "@type": "School",
               name: "SMK Gema Bhakti 1 Jasinga",
-              url: "https://smkgb1jasinga.vercel.app",
-              logo: "https://smkgb1jasinga.vercel.app/smk.jpg",
+              url: "https://smkgemabhakti1jasinga.vercel.app",
+              logo: "https://smkgemabhakti1jasinga.vercel.app/smk.jpg",
               description:
                 "SMK Gema Bhakti 1 Jasinga adalah sekolah kejuruan di Bogor yang menyediakan pembelajaran dan sistem Elearning.",
               address: {
