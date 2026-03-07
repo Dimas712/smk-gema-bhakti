@@ -12,6 +12,7 @@ import {
   deletePendaftar,
   verifikasiPendaftar
 } from "@/lib/pendaftar";
+import * as XLSX from "xlsx"
 
 export default function PendaftarPage() {
   const [search, setSearch] = useState("");
@@ -97,6 +98,63 @@ const handleVerifikasi = async (id, status) => {
   }
 };
 
+const generateNoPendaftaran = () => {
+  const year = new Date().getFullYear();
+  const random = Math.floor(100 + Math.random() * 900);
+  return `PPDB-${year}-${random}`;
+};
+
+const handleImportExcel = async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = async (evt) => {
+    const data = new Uint8Array(evt.target.result);
+    const workbook = XLSX.read(data, { type: "array" });
+
+    const sheetName = workbook.SheetNames[0];
+    const worksheet = workbook.Sheets[sheetName];
+
+    const jsonData = XLSX.utils.sheet_to_json(worksheet);
+
+    try {
+      for (const row of jsonData) {
+        const formData = new FormData();
+
+        const no_pendaftaran = generateNoPendaftaran();
+        const password = row.nisn;
+
+        formData.append("no_pendaftaran", no_pendaftaran);
+        formData.append("password", password);
+
+        formData.append("nama", row.nama || "");
+        formData.append("nisn", row.nisn || "");
+        formData.append("nik", row.nik || "");
+        formData.append("tempat_lahir", row.tempat_lahir || "");
+        formData.append("tgl_lahir", row.tgl_lahir || "");
+        formData.append("jk", row.jk || "");
+        formData.append("sekolah_asal", row.sekolah_asal || "");
+        formData.append("nama_ayah", row.nama_ayah || "");
+        formData.append("nama_ibu", row.nama_ibu || "");
+        formData.append("no_hp", row.no_hp || "");
+
+        await createPendaftar(formData);
+      }
+
+      alert("Import Excel berhasil");
+      fetchData();
+
+    } catch (error) {
+      console.error(error);
+      alert("Import gagal");
+    }
+  };
+
+  reader.readAsArrayBuffer(file);
+};
+
   return (
     <div className="space-y-6">
 
@@ -110,13 +168,27 @@ const handleVerifikasi = async (id, status) => {
         </p>
       </div>
 
-      <button
-        onClick={() => setOpenTambah(true)}
-        className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 cursor-pointer"
+      <div className="flex gap-3">
+
+        <button
+          onClick={() => setOpenTambah(true)}
+          className="flex items-center gap-2 bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"
         >
-        <Plus size={18} />
-        Tambah Pendaftar
-       </button>
+          <Plus size={18} />
+          Tambah Pendaftar
+        </button>
+
+        <label className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 cursor-pointer">
+          Import Excel
+          <input
+            type="file"
+            accept=".xlsx,.xls"
+            onChange={handleImportExcel}
+            className="hidden"
+          />
+        </label>
+
+      </div>
 
       {/* Search */}
       <div className="flex items-center gap-3 bg-white p-4 rounded-xl shadow">
