@@ -103,7 +103,7 @@ export default function PPDBPage() {
               <p>📌 <b>Pendaftaran:</b> Februari – Maret</p>
               <p>📌 <b>Syarat:</b> Fotokopi ijazah / SKL, KK, Akta, Pas Foto</p>
               <p>📌 <b>Pengumuman:</b> Online melalui website PPDB</p>
-              <p>📌 <b>Jurusan:</b> Administrasi Perkantoran</p>
+              <p>📌 <b>Jurusan:</b> Manajemen Perkantoran & Layanan Bisnis (MPLB)</p>
             </div>
 
             <div className="relative w-full h-[420px] rounded-2xl overflow-hidden shadow-xl">
