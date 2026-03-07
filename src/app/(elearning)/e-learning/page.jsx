@@ -2,16 +2,9 @@
 
 export default function ELearningPage() {
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-100 via-white to-blue-100 px-4">
-    {/*
-      ===============================
-      HALAMAN E-LEARNING LAMA
-      DIKOMENTARI SEMENTARA
-      ===============================
     <main className="min-h-screen bg-gradient-to-br from-green-100 via-white to-blue-100 px-4 py-14">
       <div className="max-w-7xl mx-auto">
 
-        {/* Hero Section *
         <section className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4">
             E-Learning
@@ -25,10 +18,8 @@ export default function ELearningPage() {
           </p>
         </section>
 
-        {/* Role Cards *
         <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
 
-          {/* Siswa *
           <div className="group bg-white/70 backdrop-blur-lg rounded-3xl p-8 shadow-lg hover:shadow-2xl transition">
             <div className="w-16 h-16 flex items-center justify-center rounded-2xl bg-green-600 text-white text-3xl mb-6">
               🎓
@@ -46,7 +37,6 @@ export default function ELearningPage() {
             </a>
           </div>
 
-          {/* Guru *
           <div className="group bg-white/70 backdrop-blur-lg rounded-3xl p-8 shadow-lg hover:shadow-2xl transition">
             <div className="w-16 h-16 flex items-center justify-center rounded-2xl bg-blue-600 text-white text-3xl mb-6">
               👩‍🏫
@@ -63,7 +53,6 @@ export default function ELearningPage() {
             </a>
           </div>
 
-          {/* Admin 
           <div className="group bg-white/70 backdrop-blur-lg rounded-3xl p-8 shadow-lg hover:shadow-2xl transition">
             <div className="w-16 h-16 flex items-center justify-center rounded-2xl bg-gray-800 text-white text-3xl mb-6">
               🧑‍💼
@@ -78,12 +67,10 @@ export default function ELearningPage() {
             >
               Masuk sebagai Admin →
             </a>
-          </div>    
-          *
+          </div>
 
         </section>
 
-        {/* Features *
         <section className="bg-white/70 backdrop-blur-lg rounded-3xl p-10 shadow-lg text-gray-800">
           <h2 className="text-3xl font-bold text-center mb-10">
             🚀 Fitur Unggulan
@@ -115,26 +102,6 @@ export default function ELearningPage() {
         </section>
 
       </div>
-    </main>
-    */}
-          {/* Maintenance Page */}
-      <div className="text-center bg-white p-10 rounded-3xl shadow-xl max-w-xl">
-        <div className="text-6xl mb-6">🛠️</div>
-
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          E-Learning Sedang Dalam Pengembangan
-        </h1>
-
-        <p className="text-gray-600 mb-6">
-          Halaman E-Learning SMK Gema Bhakti 1 Jasinga saat ini sedang dalam tahap
-          pengembangan dan peningkatan sistem.
-        </p>
-
-        <p className="text-gray-500 text-sm">
-          Silakan kembali lagi nanti. Terima kasih atas pengertiannya.
-        </p>
-      </div>
-
     </main>
   );
 }
