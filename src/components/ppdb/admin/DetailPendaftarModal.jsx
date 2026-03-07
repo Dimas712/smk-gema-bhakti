@@ -64,7 +64,6 @@ export default function DetailPendaftarModal({ open, onClose, data }) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FileItem label="Kartu Keluarga" file={getFile("kk")} />
               <FileItem label="Akta Kelahiran" file={getFile("akta")} />
-              <FileItem label="Ijazah / SKL" file={getFile("ijazah")} />
               <FileItem label="Rapor" file={getFile("rapor")} />
               <FileItem label="Pas Foto" file={getFile("foto")} />
             </div>

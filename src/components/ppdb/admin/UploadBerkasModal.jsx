@@ -52,7 +52,6 @@ export default function ModalUploadBerkas({ open, onClose, pendaftar }) {
               className="w-full mt-1 px-4 py-2 border rounded-xl"
             >
               <option value="">Pilih berkas</option>
-              <option value="ijazah">Ijazah</option>
               <option value="kk">Kartu Keluarga</option>
               <option value="akta">Akta Kelahiran</option>
               <option value="rapor">Rapor</option>

@@ -75,7 +75,6 @@ export default function TambahPendaftarModal({ open, onClose, onSubmit }) {
       // FILE
       if (form.kk) formData.append("kk", form.kk);
       if (form.akta) formData.append("akta", form.akta);
-      if (form.ijazah) formData.append("ijazah", form.ijazah);
       if (form.rapor) formData.append("rapor", form.rapor);
       if (form.foto) formData.append("foto", form.foto);
 
@@ -178,7 +177,6 @@ export default function TambahPendaftarModal({ open, onClose, onSubmit }) {
             <div className="grid md:grid-cols-2 gap-4">
               <File label="Kartu Keluarga" name="kk" onChange={handleFile} />
               <File label="Akta Kelahiran" name="akta" onChange={handleFile} />
-              <File label="Ijazah" name="ijazah" onChange={handleFile} />
               <File label="Rapor" name="rapor" onChange={handleFile} />
               <File label="Pas Foto" name="foto" onChange={handleFile} />
             </div>
