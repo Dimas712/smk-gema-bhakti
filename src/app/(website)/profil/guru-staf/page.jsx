@@ -96,9 +96,6 @@ export default function GuruStaffPage() {
                 <h3 className="font-semibold text-lg">
                   {item.nama}
                 </h3>
-                <p className="text-sm text-blue-600">
-                  {item.jabatan}
-                </p>
               </div>
             </div>
           ))}
