@@ -100,9 +100,9 @@ export default function PPDBPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
 
             <div className="space-y-4 text-gray-700">
-              <p>📌 <b>Pendaftaran:</b> Februari – Maret</p>
+              <p>📌 <b>Pendaftaran:</b> April – Juni</p>
               <p>📌 <b>Syarat:</b> Fotokopi ijazah / SKL, KK, Akta, Pas Foto</p>
-              <p>📌 <b>Pengumuman:</b> Online melalui website PPDB</p>
+              <p>📌 <b>Pengumuman:</b> Di Informasikan melalui Grup WhatsApp</p>
               <p>📌 <b>Jurusan:</b> Manajemen Perkantoran & Layanan Bisnis (MPLB)</p>
             </div>
 
