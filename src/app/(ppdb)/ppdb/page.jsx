@@ -10,7 +10,7 @@ export default function PPDBPage() {
         {/* Hero Section */}
         <section className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4">
-            PPDB Online
+            PPDB ONLINE
             <span className="block text-green-700">
               SMK GEMA BHAKTI 1 JASINGA
             </span>
