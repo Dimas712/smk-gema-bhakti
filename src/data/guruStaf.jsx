@@ -44,7 +44,7 @@ const guruStaf = [
     foto: "/guru/staff-tu.jpg",
   },
  {
-    nama: "Aryunisih, S.Mat",
+    nama: "Aryuningsih, S.Mat",
     foto: "/guru/staff-tu.jpg",
   },
  {

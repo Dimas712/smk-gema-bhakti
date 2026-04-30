@@ -222,7 +222,7 @@ const Navbar = () => {
           }`}
         >
           <a
-            href="https://www.instagram.com/smkgema_bhakti"
+            href="https://www.instagram.com/smk_gemabhakti1jasinga?igsh=cjZmNmd5em1kMzRu"
             target="_blank"
             className="hover:text-green-600 transition"
           >
