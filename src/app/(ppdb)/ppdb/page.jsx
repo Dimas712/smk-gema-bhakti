@@ -46,7 +46,7 @@ export default function PPDBPage() {
             </a>
           </div>
 
-          {/* Login Admin */}
+          {/* Login Admin 
           <div className="group bg-white/70 backdrop-blur-lg rounded-3xl p-8 shadow-lg hover:shadow-2xl transition">
             <div className="w-16 h-16 flex items-center justify-center rounded-2xl bg-purple-600 text-white text-3xl mb-6">
               🛠️
@@ -65,6 +65,7 @@ export default function PPDBPage() {
               Login Admin →
             </a>
           </div>
+          */}
 
           {/*
           Login Peserta (sementara dinonaktifkan)
@@ -101,7 +102,7 @@ export default function PPDBPage() {
 
             <div className="space-y-4 text-gray-700">
               <p>📌 <b>Pendaftaran:</b> April – Juni</p>
-              <p>📌 <b>Syarat:</b> Fotokopi ijazah / SKL, KK, Akta, Pas Foto</p>
+              <p>📌 <b>Syarat:</b> Fotokopi ijazah / SKL, KK, Akta Kelahiran, Surat Keterangan Sehat, Pas Foto 3x4</p>
               <p>📌 <b>Pengumuman:</b> Di Informasikan melalui Grup WhatsApp</p>
               <p>📌 <b>Jurusan:</b> Manajemen Perkantoran & Layanan Bisnis (MPLB)</p>
             </div>
