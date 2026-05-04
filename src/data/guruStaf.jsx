@@ -105,7 +105,7 @@ const guruStaf = [
   },
  {
     nama: "Siti Nurazizah",
-    foto: "/guru/staff-tu.jpg",
+    foto: "/guru/Bu_Zizah.jpeg",
   },
 ]
 
