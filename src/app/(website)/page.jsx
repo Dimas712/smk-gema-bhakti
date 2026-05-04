@@ -102,7 +102,6 @@ export default function Home() {
             {[
               {
                 title: "Manajemen Perkantoran & Layanan Bisnis (MPLB)",
-                desc: "Instalasi jaringan, server, keamanan, dan troubleshooting.",
                 badge: "Networking",
               }
             ].map((item, index) => (
