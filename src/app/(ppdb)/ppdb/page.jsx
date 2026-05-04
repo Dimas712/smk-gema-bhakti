@@ -101,10 +101,25 @@ export default function PPDBPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
 
             <div className="space-y-4 text-gray-700">
-              <p>📌 <b>Pendaftaran:</b> April – Juni</p>
+              <p>📌 <b>Pendaftaran:</b></p>
+              <ul className="list-disc ml-5 space-y-1">
+                <li>Golongan 1: 30 April – 31 Mei 2026</li>
+                <li>Golongan 2: 1 Juni – 30 Juni 2026</li>
+                <li>Golongan 3: 1 Juli – 13 Juli 2026</li>
+              </ul>
+
+              <p>📌 <b>Daftar Ulang:</b></p>
+              <ul className="list-disc ml-5 space-y-1">
+                <li>Golongan 1 & 2: 30 Juni 2026</li>
+                <li>Golongan 3: 10 Juli 2026</li>
+              </ul>
+
               <p>📌 <b>Syarat:</b> Fotokopi ijazah / SKL, KK, Akta Kelahiran, Surat Keterangan Sehat, Pas Foto 3x4</p>
-              <p>📌 <b>Pengumuman:</b> Di Informasikan melalui Grup WhatsApp</p>
+              <p>📌 <b>Pengumuman:</b> Diinformasikan melalui Grup WhatsApp</p>
               <p>📌 <b>Jurusan:</b> Manajemen Perkantoran & Layanan Bisnis (MPLB)</p>
+              <p className="mt-4 text-green-700 font-semibold">
+                🎓 Program Khusus: Gratis SPP selama 3 tahun untuk siswa Yatim
+              </p>
             </div>
 
             <div className="relative w-full h-[420px] rounded-2xl overflow-hidden shadow-xl">
@@ -118,6 +133,60 @@ export default function PPDBPage() {
 
           </div>
         </section>
+        {/* Roadmap / Alur PPDB */}
+<section className="bg-white/70 backdrop-blur-lg rounded-3xl p-10 shadow-lg mb-20">
+  <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
+    Alur Pendaftaran PPDB
+  </h2>
+
+  <div className="relative border-l-4 border-green-500 ml-4">
+
+    {/* Step 1 */}
+    <div className="mb-10 ml-6">
+      <div className="absolute w-4 h-4 bg-green-600 rounded-full -left-2.5"></div>
+      <h3 className="text-xl font-semibold text-gray-800">
+        1. Pendaftaran Online
+      </h3>
+      <p className="text-gray-600 text-sm">
+        Isi formulir pendaftaran melalui Google Form sesuai data diri.
+      </p>
+    </div>
+
+    {/* Step 2 */}
+    <div className="mb-10 ml-6">
+      <div className="absolute w-4 h-4 bg-green-600 rounded-full -left-2.5"></div>
+      <h3 className="text-xl font-semibold text-gray-800">
+        2. Pengumuman
+      </h3>
+      <p className="text-gray-600 text-sm">
+        Hasil seleksi akan diinformasikan melalui grup WhatsApp resmi.
+      </p>
+    </div>
+
+    {/* Step 3 */}
+    <div className="mb-10 ml-6">
+      <div className="absolute w-4 h-4 bg-green-600 rounded-full -left-2.5"></div>
+      <h3 className="text-xl font-semibold text-gray-800">
+        4. Daftar Ulang
+      </h3>
+      <p className="text-gray-600 text-sm">
+        Peserta yang lolos wajib melakukan daftar ulang sesuai jadwal.
+      </p>
+    </div>
+
+    {/* Step 4 */}
+    <div className="ml-6">
+      <div className="absolute w-4 h-4 bg-green-600 rounded-full -left-2.5"></div>
+      <h3 className="text-xl font-semibold text-gray-800">
+        5. Resmi Menjadi Siswa
+      </h3>
+      <p className="text-gray-600 text-sm">
+        Selamat! Anda resmi menjadi bagian dari SMK Gema Bhakti 1 Jasinga 🎉
+      </p>
+    </div>
+
+  </div>
+</section>
 
       </div>
     </main>
