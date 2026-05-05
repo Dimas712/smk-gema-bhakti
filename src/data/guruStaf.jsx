@@ -11,7 +11,7 @@ const guruStaf = [
   },
   {
     nama: "Ahmad Safe'i, S.Pd",
-    jabatan: "Kepala Sekolah",
+    jabatan: "",
     foto: "/guru/guru-rpl.jpg",
   },
   {
