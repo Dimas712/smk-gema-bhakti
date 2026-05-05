@@ -36,7 +36,7 @@ export default function GuruStaffPage() {
 
       {/* Header */}
       <section className="bg-gradient-to-r from-green-700 text-white py-20 text-center">
-        <h1 className="ttext-4xl font-bold md:text-5xl mb-4" data-aos="fade-down">
+        <h1 className="text-4xl font-bold md:text-5xl mb-4" data-aos="fade-down">
           Guru & Staff
         </h1>
         <p className="text-xl md:text-2xl" data-aos="fade-up">
@@ -96,6 +96,9 @@ export default function GuruStaffPage() {
                 <h3 className="font-semibold text-lg">
                   {item.nama}
                 </h3>
+                <p className="text-sm text-green-600 font-medium mt-1">
+                  {item.jabatan}
+                </p>
               </div>
             </div>
           ))}
