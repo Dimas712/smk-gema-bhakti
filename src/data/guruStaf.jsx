@@ -10,7 +10,7 @@ const guruStaf = [
     foto: "/guru/wakasek.jpg",
   },
   {
-    nama: "Ahmad Safe'i, S.Pd",
+    nama: "Ahmad Syafe'i, S.Pd",
     jabatan: "Ketua Yayasan",
     foto: "/guru/guru-rpl.jpg",
   },
