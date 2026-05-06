@@ -103,15 +103,15 @@ export default function PPDBPage() {
             <div className="space-y-4 text-gray-700">
               <p>📌 <b>Pendaftaran:</b></p>
               <ul className="list-disc ml-5 space-y-1">
-                <li>Golongan 1: 30 April – 31 Mei 2026</li>
-                <li>Golongan 2: 1 Juni – 30 Juni 2026</li>
-                <li>Golongan 3: 1 Juli – 13 Juli 2026</li>
+                <li>Gelombang 1: 30 April – 31 Mei 2026</li>
+                <li>Gelombang 2: 1 Juni – 30 Juni 2026</li>
+                <li>Gelombang 3: 1 Juli – 13 Juli 2026</li>
               </ul>
 
               <p>📌 <b>Daftar Ulang:</b></p>
               <ul className="list-disc ml-5 space-y-1">
-                <li>Golongan 1 & 2: 30 Juni 2026</li>
-                <li>Golongan 3: 10 Juli 2026</li>
+                <li>Gelombang 1 & 2: 30 Juni 2026</li>
+                <li>Gelombang 3: 10 Juli 2026</li>
               </ul>
 
               <p>📌 <b>Syarat:</b> Fotokopi ijazah / SKL, KK, Akta Kelahiran, Surat Keterangan Sehat, Pas Foto 3x4</p>
