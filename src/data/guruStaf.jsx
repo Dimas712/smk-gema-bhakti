@@ -11,11 +11,12 @@ const guruStaf = [
   },
   {
     nama: "Ahmad Safe'i, S.Pd",
-    jabatan: "",
+    jabatan: "Ketua Yayasan",
     foto: "/guru/guru-rpl.jpg",
   },
   {
     nama: "Ma'mur, M.Pd",
+    jabatan: "Pendamping Kepala Sekolah",
     foto: "/guru/guru-mm.jpg",
   },
   {
@@ -84,7 +85,7 @@ const guruStaf = [
   },
  {
     nama: "Ebis Bisri Abdillah, S.Si",
-    jabatan: "Guru",  
+    jabatan: "Kepala Program",  
     foto: "/guru/staff-tu.jpg",
   },
  {
@@ -121,7 +122,7 @@ const guruStaf = [
     foto: "/guru/staff-tu.jpg",
   },
  {
-    nama: "Miftahul Fatah",
+    nama: "Fatah Miftahul Ulum",
     jabatan: "Staf TU",
     foto: "/guru/staff-tu.jpg",
   },
