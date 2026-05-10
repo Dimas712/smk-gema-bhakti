@@ -133,56 +133,85 @@ export default function PPDBPage() {
 
           </div>
         </section>
-        {/* Roadmap / Alur PPDB */}
-<section className="bg-white/70 backdrop-blur-lg rounded-3xl p-10 shadow-lg mb-20">
-  <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
-    Alur Pendaftaran PPDB
+ {/* Roadmap / Alur PPDB Modern */}
+{/* Roadmap / Alur PPDB Modern */}
+<section className="bg-white/70 backdrop-blur-lg rounded-3xl p-10 shadow-lg mb-20 overflow-hidden">
+  <h2 className="text-3xl font-bold text-center mb-14 text-gray-800">
+    🚀 Alur Pendaftaran PPDB
   </h2>
 
-  <div className="relative border-l-4 border-green-500 ml-4">
+  <div className="relative">
 
-    {/* Step 1 */}
-    <div className="mb-10 ml-6">
-      <div className="absolute w-4 h-4 bg-green-600 rounded-full -left-2.5"></div>
-      <h3 className="text-xl font-semibold text-gray-800">
-        1. Pendaftaran Online
-      </h3>
-      <p className="text-gray-600 text-sm">
-        Isi formulir pendaftaran melalui Google Form sesuai data diri.
-      </p>
+    {/* Garis Alur */}
+    <div className="hidden md:block absolute top-20 left-0 w-full h-3 bg-green-200 rounded-full"></div>
+
+    {/* Steps */}
+    <div className="grid grid-cols-1 md:grid-cols-5 gap-10 relative z-10">
+
+      {[
+        {
+          icon: "📝",
+          title: "Isi Formulir",
+          desc: "Calon siswa mengisi formulir PPDB online dengan data lengkap dan benar.",
+          color: "bg-green-600",
+        },
+        {
+          icon: "📲",
+          title: "Notifikasi WhatsApp",
+          desc: "Peserta akan mendapatkan pesan WhatsApp bahwa pendaftaran berhasil dilakukan.",
+          color: "bg-blue-600",
+        },
+        {
+          icon: "👥",
+          title: "Masuk Grup WA",
+          desc: "Peserta akan diarahkan masuk ke grup WhatsApp resmi PPDB untuk informasi lanjutan.",
+          color: "bg-purple-600",
+        },
+        {
+          icon: "📂",
+          title: "Persiapan Berkas",
+          desc: "Peserta membawa berkas seperti KK, Akta, Ijazah/SKL, Pas Foto, dan surat kesehatan.",
+          color: "bg-yellow-500",
+        },
+        {
+          icon: "🎓",
+          title: "Daftar Ulang",
+          desc: "Peserta melakukan daftar ulang sesuai jadwal yang telah ditentukan sekolah.",
+          color: "bg-red-500",
+        },
+      ].map((item, index) => (
+        <div
+          key={index}
+          className="flex flex-col items-center text-center group"
+        >
+
+          {/* Circle */}
+          <div
+            className={`w-20 h-20 rounded-full ${item.color} text-white flex items-center justify-center text-3xl shadow-xl border-4 border-white group-hover:scale-110 transition duration-300`}
+          >
+            {item.icon}
+          </div>
+
+          {/* Content */}
+          <div className="mt-5">
+            <h3 className="text-lg font-bold text-gray-800 mb-2">
+              {item.title}
+            </h3>
+
+            <p className="text-sm text-gray-600 leading-relaxed">
+              {item.desc}
+            </p>
+          </div>
+        </div>
+      ))}
+
     </div>
 
-    {/* Step 2 */}
-    <div className="mb-10 ml-6">
-      <div className="absolute w-4 h-4 bg-green-600 rounded-full -left-2.5"></div>
-      <h3 className="text-xl font-semibold text-gray-800">
-        2. Pengumuman
-      </h3>
-      <p className="text-gray-600 text-sm">
-        Hasil seleksi akan diinformasikan melalui grup WhatsApp resmi.
-      </p>
-    </div>
-
-    {/* Step 3 */}
-    <div className="mb-10 ml-6">
-      <div className="absolute w-4 h-4 bg-green-600 rounded-full -left-2.5"></div>
-      <h3 className="text-xl font-semibold text-gray-800">
-        4. Daftar Ulang
-      </h3>
-      <p className="text-gray-600 text-sm">
-        Peserta yang lolos wajib melakukan daftar ulang sesuai jadwal.
-      </p>
-    </div>
-
-    {/* Step 4 */}
-    <div className="ml-6">
-      <div className="absolute w-4 h-4 bg-green-600 rounded-full -left-2.5"></div>
-      <h3 className="text-xl font-semibold text-gray-800">
-        5. Resmi Menjadi Siswa
-      </h3>
-      <p className="text-gray-600 text-sm">
-        Selamat! Anda resmi menjadi bagian dari SMK Gema Bhakti 1 Jasinga 🎉
-      </p>
+    {/* Finish Badge */}
+    <div className="flex justify-center mt-14">
+      <div className="bg-gradient-to-r from-green-600 to-green-500 text-white px-8 py-4 rounded-full shadow-lg text-lg font-semibold animate-pulse text-center">
+        🎉 Selamat Datang di SMK Gema Bhakti 1 Jasinga
+      </div>
     </div>
 
   </div>

@@ -5,7 +5,7 @@ import Image from "next/image"
 const galeriList = [
   { src: "/LDKS.jpeg", title: "LDKS (Latihan Dasar Kepemimpinan Siswa)" },
   { src: "/galeri/Futsal_laki.jpeg", title: "Lomba Futsal SMAPIJ CUP V" },
-  { src: "/galeri/3.jpg", title: "Kunjungan Industri" },
+  { src: "/galeri/Hari_guru.jpg", title: "Hari Guru" },
   { src: "/galeri/4.jpg", title: "Ekstrakurikuler" },
   { src: "/galeri/5.jpg", title: "Lomba Sekolah" },
   { src: "/galeri/6.jpg", title: "Hari Besar Nasional" },
