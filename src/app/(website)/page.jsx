@@ -64,11 +64,6 @@ export default function Home() {
                 desc: "Disiplin, etika, dan tanggung jawab",
               },
               {
-                icon: <Cpu size={32} />,
-                title: "Berbasis Teknologi",
-                desc: "Pembelajaran IT & digital",
-              },
-              {
                 icon: <Briefcase size={32} />,
                 title: "Siap Kerja",
                 desc: "Link & match dunia industri",
