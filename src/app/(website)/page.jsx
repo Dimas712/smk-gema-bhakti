@@ -4,7 +4,14 @@ import { useEffect } from "react"
 import AOS from "aos"
 import "aos/dist/aos.css"
 import HeroSection from "@/components/Herosection"
-import { GraduationCap, Cpu, Briefcase } from "lucide-react"
+import {
+  GraduationCap,
+  Cpu,
+  Briefcase,
+  ClipboardCheck,
+  FileText,
+  Smartphone,
+} from "lucide-react"
 
 export default function Home() {
 
@@ -88,6 +95,92 @@ export default function Home() {
         </div>
       </section>
 
+      {/* PPDB */}
+      <section
+        id="ppdb"
+        className="py-24 px-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white"
+      >
+        <div className="container mx-auto max-w-6xl">
+
+          <div
+            data-aos="fade-up"
+            className="text-center mb-16"
+          >
+            <h3 className="text-3xl md:text-4xl font-bold mb-4">
+              Pendaftaran PPDB 2026/2027
+            </h3>
+
+            <p className="max-w-2xl mx-auto text-blue-100 text-lg">
+              Pendaftaran siswa baru kini lebih mudah dan cepat secara online.
+              Daftarkan diri Anda sekarang dan bergabung bersama
+              SMK Gema Bhakti 1 Jasinga.
+            </p>
+          </div>
+
+          {/* Steps */}
+          <div className="grid md:grid-cols-3 gap-8 mb-14">
+            {[
+              {
+                icon: <FileText size={34} />,
+                title: "Isi Formulir",
+                desc: "Lengkapi formulir pendaftaran online dengan data yang benar.",
+              },
+              {
+                icon: <ClipboardCheck size={34} />,
+                title: "Verifikasi Data",
+                desc: "Panitia akan memeriksa dan memvalidasi data pendaftaran.",
+              },
+              {
+                icon: <Smartphone size={34} />,
+                title: "Informasi Lanjutan",
+                desc: "Peserta akan mendapatkan informasi melalui WhatsApp.",
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                data-aos="zoom-in"
+                data-aos-delay={i * 150}
+                className="bg-white/10 backdrop-blur-md rounded-3xl p-8 text-center border border-white/20 hover:scale-105 transition"
+              >
+                <div className="flex justify-center mb-4 text-white">
+                  {item.icon}
+                </div>
+
+                <h4 className="text-xl font-semibold mb-3">
+                  {item.title}
+                </h4>
+
+                <p className="text-blue-100 text-sm leading-relaxed">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <div
+            data-aos="fade-up"
+            className="flex flex-col md:flex-row justify-center items-center gap-5"
+          >
+            <a
+              href="https://forms.gle/avcp3MCXeg3cEhVu5"
+              target="_blank"
+              className="bg-white text-blue-600 font-semibold px-8 py-4 rounded-2xl shadow-lg hover:scale-105 transition"
+            >
+              Daftar Sekarang
+            </a>
+
+            <a
+              href="https://wa.me/628570000000?text=Halo%20Panitia%20PPDB%20SMK%20Gema%20Bhakti%201%20Jasinga,%20saya%20ingin%20bertanya%20tentang%20proses%20pendaftaran."
+              target="_blank"
+              className="bg-green-500 hover:bg-green-600 text-white font-semibold px-8 py-4 rounded-2xl shadow-lg hover:scale-105 transition"
+            >
+              Hubungi Panitia
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Program Keahlian */}
       <section id="jurusan" className="bg-gray-100 py-24 px-4">
         <div className="container mx-auto">
@@ -103,6 +196,7 @@ export default function Home() {
               {
                 title: "Manajemen Perkantoran & Layanan Bisnis (MPLB)",
                 badge: "Networking",
+                desc: "Mempelajari administrasi modern, layanan bisnis, komunikasi, dan teknologi perkantoran.",
               }
             ].map((item, index) => (
               <div
@@ -114,9 +208,11 @@ export default function Home() {
                 <span className="absolute top-5 right-5 text-xs bg-blue-100 text-blue-600 px-3 py-1 rounded-full">
                   {item.badge}
                 </span>
+
                 <h4 className="font-semibold text-xl mb-3">
                   {item.title}
                 </h4>
+
                 <p className="text-gray-600">
                   {item.desc}
                 </p>
@@ -143,9 +239,10 @@ export default function Home() {
             <p className="font-semibold text-blue-600 mb-3 text-lg">
               Visi
             </p>
+
             <p className="text-gray-600">
-              Menjadikan Lembaga Pendidikan yang Profesional, serta Mampu Melahirkan Generasi
-              Musayang Berkualitas yang Didasari Iman dan Taqwa
+              Menjadikan Lembaga Pendidikan yang Profesional, serta Mampu
+              Melahirkan Generasi Berkualitas yang Didasari Iman dan Taqwa.
             </p>
           </div>
 
@@ -156,12 +253,16 @@ export default function Home() {
             <p className="font-semibold text-green-600 mb-3 text-lg">
               Misi
             </p>
+
             <ul className="list-disc ml-5 text-gray-600 space-y-2">
               <li>Meningkatkan Keimanan Dan Ketaqwaan</li>
               <li>Mencetak Generasi Muda yang Siap Kerja Di Segala Bidang</li>
-              <li>Turut Mencerdaskan Anak Banga</li>
+              <li>Turut Mencerdaskan Anak Bangsa</li>
               <li>Berperan Aktif Dalam Membangun Negara</li>
-              <li>Menjadikan Siswa-Siswi SMK GEMA BHAKTI 1 Jasinga Taat Pada Orang Tua dan Guru</li>
+              <li>
+                Menjadikan Siswa-Siswi SMK Gema Bhakti 1 Jasinga Taat Pada
+                Orang Tua dan Guru
+              </li>
             </ul>
           </div>
         </div>
