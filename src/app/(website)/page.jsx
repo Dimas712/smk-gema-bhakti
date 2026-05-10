@@ -158,7 +158,7 @@ export default function Home() {
             className="flex flex-col md:flex-row justify-center items-center gap-5"
           >
             <a
-              href="https://forms.gle/avcp3MCXeg3cEhVu5"
+              href="https://smkgemabhakti1jasinga.vercel.app/ppdb"
               target="_blank"
               className="bg-white text-blue-600 font-semibold px-8 py-4 rounded-2xl shadow-lg hover:scale-105 transition"
             >

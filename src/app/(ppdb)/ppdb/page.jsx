@@ -210,7 +210,7 @@ export default function PPDBPage() {
     {/* Finish Badge */}
     <div className="flex justify-center mt-14">
       <div className="bg-gradient-to-r from-green-600 to-green-500 text-white px-8 py-4 rounded-full shadow-lg text-lg font-semibold animate-pulse text-center">
-        🎉 Selamat Datang di SMK Gema Bhakti 1 Jasinga
+        Selamat Datang di SMK Gema Bhakti 1 Jasinga
       </div>
     </div>
 
