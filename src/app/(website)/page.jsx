@@ -56,7 +56,7 @@ export default function Home() {
           </p>
 
           {/* Highlight */}
-          <div className="grid md:grid-cols-3 gap-6 mt-12">
+          <div className="grid md:grid-cols-2 gap-6 mt-12">
             {[
               {
                 icon: <GraduationCap size={32} />,
