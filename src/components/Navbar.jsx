@@ -18,6 +18,7 @@ const menuList = [
   { label: "Kegiatan", link: "/kegiatan" },
   { label: "Galeri", link: "/galeri" },
   { label: "Kontak", link: "/kontak" },
+  { label: "Ujian", link: "/ujian" },
 ]
 
 const Navbar = () => {
