@@ -36,7 +36,7 @@ export default function UjianPage() {
           </div>
 
           <h1 className="text-5xl font-extrabold text-gray-800 mb-4">
-            Ujian Akhir Semester
+            Penilaian Akhir Semester
           </h1>
 
           <p className="text-gray-500 text-lg max-w-2xl mx-auto">
