@@ -84,133 +84,202 @@ export default function UjianPage() {
 
 </div>
 
-      <div className="max-w-7xl mx-auto px-6 pb-20">
+<div className="max-w-7xl mx-auto px-6 pb-20">
 
-        <div className="space-y-10">
+  <div className="space-y-10">
 
-          {jadwalUjian[kelasAktif].map((hari,i)=>(
+    {jadwalUjian[kelasAktif].map((hari, i) => (
 
-            <div
-              key={i}
-              className="bg-white/70 backdrop-blur-lg rounded-3xl shadow-xl p-8 border border-white"
-            >
+      <div
+        key={i}
+        className="bg-white/70 backdrop-blur-lg rounded-3xl shadow-xl p-8 border border-white"
+      >
 
-              {/* Header Hari */}
+        {/* Header Hari */}
 
-              <div className="flex items-center gap-3 mb-8">
+        <div className="flex items-center gap-3 mb-8">
 
-                <div className="p-3 rounded-2xl bg-green-100">
-                  <Calendar className="text-green-700"/>
-                </div>
+          <div className="p-3 rounded-2xl bg-green-100">
+            <Calendar className="text-green-700"/>
+          </div>
 
-                <div>
-                  <h2 className="text-3xl font-bold text-gray-800">
-                    {hari.hari}
-                  </h2>
+          <div>
 
-                  <p className="text-gray-500">
-                    4 Mata Pelajaran
-                  </p>
-                </div>
+            <h2 className="text-3xl font-bold text-gray-800">
+              {hari.hari}
+            </h2>
 
-              </div>
+            <p className="text-gray-500">
+              {hari.mapel.length} Mata Pelajaran
+            </p>
 
-              <div className="grid lg:grid-cols-3 gap-6">
+          </div>
 
-                {hari.mapel.map((item, j) => {
+        </div>
 
-                  const mulai = new Date(item.mulai);
+        <div className="grid lg:grid-cols-3 gap-6">
 
-                  const aktif = now >= mulai;
+          {hari.mapel.map((item, j) => {
 
-                  return (
+            const mulai = new Date(item.mulai);
+            const selesai = new Date(item.selesai);
 
-                    <div
-                      key={j}
-                      className="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border"
-                    >
+            let status = "Belum Dimulai";
 
-                      <div className="flex justify-between items-start">
+            if (now >= mulai && now <= selesai) {
+              status = "Tersedia";
+            } else if (now > selesai) {
+              status = "Selesai";
+            }
 
-                        <div>
+            return (
 
-                          <div className="flex items-center gap-2">
+              <div
+                key={j}
+                className="
+                bg-white rounded-2xl p-6
+                shadow-md hover:shadow-xl
+                hover:-translate-y-2
+                transition-all duration-300 border
+                "
+              >
 
-                            <BookOpen
-                            className="text-green-600"/>
+                <div className="flex justify-between items-start">
 
-                            <h3 className="font-bold text-xl text-gray-800">
-                              {item.nama}
-                            </h3>
+                  <div>
 
-                          </div>
+                    <div className="flex items-center gap-2">
 
-                          <div className="mt-4 space-y-2">
+                      <BookOpen className="text-green-600"/>
 
-                            <p className="flex items-center gap-2 text-gray-500">
-
-                              <Clock size={16}/>
-
-                              {mulai.toLocaleString()}
-
-                            </p>
-
-                          </div>
-
-                        </div>
-
-                        {aktif ? (
-                          <span className="px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm">
-                            Tersedia
-                          </span>
-                        ) : (
-                          <span className="px-3 py-1 rounded-full bg-red-100 text-red-600 text-sm">
-                            Terkunci
-                          </span>
-                        )}
-
-                      </div>
-
-                      {aktif ? (
-
-                        <a
-                          href={item.file}
-                          target="_blank"
-                          className="mt-6 w-full flex items-center justify-center gap-2 bg-gradient-to-r from-green-600 to-emerald-500 text-white py-3 rounded-xl font-semibold hover:scale-105 transition"
-                        >
-                          <FileText size={18}/>
-                          Buka Soal
-                        </a>
-
-                      ) : (
-
-                        <button
-                          disabled
-                          className="mt-6 w-full flex items-center justify-center gap-2 bg-gray-200 text-gray-500 py-3 rounded-xl cursor-not-allowed"
-                        >
-
-                          <Lock size={18}/>
-                          Belum Dimulai
-
-                        </button>
-
-                      )}
+                      <h3 className="font-bold text-xl text-gray-800">
+                        {item.nama}
+                      </h3>
 
                     </div>
 
-                  )
+                    <div className="mt-4 space-y-2">
 
-                })}
+                      {/* Tanggal */}
+
+                      <p className="flex items-center gap-2 text-gray-500">
+
+                        <Calendar size={16}/>
+
+                        {mulai.toLocaleDateString("id-ID",{
+                          weekday:"long",
+                          day:"numeric",
+                          month:"long",
+                          year:"numeric"
+                        })}
+
+                      </p>
+
+                      {/* Jam */}
+
+                      <p className="flex items-center gap-2 text-gray-500">
+
+                        <Clock size={16}/>
+
+                        {mulai.toLocaleTimeString("id-ID",{
+                          hour:"2-digit",
+                          minute:"2-digit"
+                        })}
+
+                        {" - "}
+
+                        {selesai.toLocaleTimeString("id-ID",{
+                          hour:"2-digit",
+                          minute:"2-digit"
+                        })}
+
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                  {/* Status */}
+
+                  {status==="Tersedia" && (
+                    <span className="px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm">
+                      Tersedia
+                    </span>
+                  )}
+
+                  {status==="Belum Dimulai" && (
+                    <span className="px-3 py-1 rounded-full bg-yellow-100 text-yellow-700 text-sm">
+                      Belum Mulai
+                    </span>
+                  )}
+
+                  {status==="Selesai" && (
+                    <span className="px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-sm">
+                      Selesai
+                    </span>
+                  )}
+
+                </div>
+
+                {/* Tombol */}
+
+                {status==="Tersedia" ? (
+
+                  <a
+                    href={item.file}
+                    target="_blank"
+                    className="
+                    mt-6 w-full flex items-center
+                    justify-center gap-2
+                    bg-gradient-to-r
+                    from-green-600 to-emerald-500
+                    text-white py-3 rounded-xl
+                    font-semibold hover:scale-105 transition
+                    "
+                  >
+
+                    <FileText size={18}/>
+                    Buka Soal
+
+                  </a>
+
+                ) : (
+
+                  <button
+                    disabled
+                    className="
+                    mt-6 w-full flex items-center
+                    justify-center gap-2
+                    bg-gray-200 text-gray-500
+                    py-3 rounded-xl cursor-not-allowed
+                    "
+                  >
+
+                    <Lock size={18}/>
+
+                    {status==="Belum Dimulai"
+                      ? "Belum Dimulai"
+                      : "Ujian Selesai"}
+
+                  </button>
+
+                )}
 
               </div>
 
-            </div>
+            )
 
-          ))}
+          })}
 
         </div>
 
       </div>
+
+    ))}
+
+  </div>
+
+</div>
 
     </main>
   );
