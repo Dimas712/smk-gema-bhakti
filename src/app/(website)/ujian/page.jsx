@@ -27,43 +27,77 @@ export default function UjianPage() {
   }, []);
 
 useEffect(() => {
+  if (!fileAktif) return;
 
   const audio = new Audio("/warning.mp3");
 
-  const triggerPeringatan = () => {
+  const triggerPeringatan = async () => {
 
-    // hanya aktif saat soal sedang dibuka
-    if (!fileAktif) return;
+    // cegah popup berkali-kali
+    if (halamanSudahAktif.current) return;
+
+    halamanSudahAktif.current = true;
 
     // bunyi
+    audio.currentTime = 0;
     audio.play().catch(() => {});
 
     // getar HP
     if ("vibrate" in navigator) {
-      navigator.vibrate([300, 200, 300]);
+      navigator.vibrate([500, 200, 500]);
     }
 
-    Swal.fire({
+    await Swal.fire({
       icon: "warning",
       title: "Peringatan!",
-      text: "Anda terdeteksi keluar dari halaman ujian.",
+      text: "Anda terdeteksi keluar dari mode ujian.",
       confirmButtonColor: "#dc2626",
-      allowOutsideClick: false
+      allowOutsideClick: false,
+      allowEscapeKey: false
     });
 
+    // reset supaya bisa muncul lagi nanti
+    setTimeout(() => {
+      halamanSudahAktif.current = false;
+    }, 1000);
+
   };
 
+  // pindah tab / minimize
   const handleVisibility = () => {
-
-    if (document.visibilityState === "hidden") {
+    if (
+      document.visibilityState === "hidden"
+    ) {
       triggerPeringatan();
     }
-
   };
 
-  const handleFullscreen = () => {
+  // keluar fullscreen
+  const handleFullscreen = async () => {
+    if (
+      fileAktif &&
+      !document.fullscreenElement
+    ) {
 
-    if (!document.fullscreenElement && fileAktif) {
+      triggerPeringatan();
+
+      // paksa masuk fullscreen lagi
+      try {
+        await document.documentElement.requestFullscreen();
+      } catch (err) {}
+    }
+  };
+
+  // kehilangan fokus
+  const handleBlur = () => {
+    triggerPeringatan();
+  };
+
+  // blok ESC
+  const handleKeyDown = (e) => {
+
+    if (e.key === "Escape") {
+      e.preventDefault();
       triggerPeringatan();
     }
 
@@ -71,7 +105,7 @@ useEffect(() => {
 
   window.addEventListener(
     "blur",
-    triggerPeringatan
+    handleBlur
   );
 
   document.addEventListener(
@@ -84,11 +118,16 @@ useEffect(() => {
     handleFullscreen
   );
 
+  document.addEventListener(
+    "keydown",
+    handleKeyDown
+  );
+
   return () => {
 
     window.removeEventListener(
       "blur",
-      triggerPeringatan
+      handleBlur
     );
 
     document.removeEventListener(
@@ -99,6 +138,11 @@ useEffect(() => {
     document.removeEventListener(
       "fullscreenchange",
       handleFullscreen
+    );
+
+    document.removeEventListener(
+      "keydown",
+      handleKeyDown
     );
 
   };
