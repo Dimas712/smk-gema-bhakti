@@ -1,18 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   Calendar,
   Clock,
   BookOpen,
   Lock,
   FileText,
+  X
 } from "lucide-react";
 import jadwalUjian from "@/data/jadwalUjian"; 
+import Swal from "sweetalert2";
 
 export default function UjianPage() {
   const [now, setNow] = useState(new Date());
   const [kelasAktif, setKelasAktif] = useState("X");
+  const [fileAktif, setFileAktif] = useState(null);
+  const [jumlahPelanggaran, setJumlahPelanggaran] = useState(0);
+  const halamanSudahAktif = useRef(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -21,6 +26,134 @@ export default function UjianPage() {
 
     return () => clearInterval(interval);
   }, []);
+
+    useEffect(() => {
+
+      const audio = new Audio("/warning.mp3");
+
+      // tandai bahwa halaman sudah aktif sesudah render awal
+      const timer = setTimeout(() => {
+        halamanSudahAktif.current = true;
+      }, 2000);
+
+      const handleVisibility = () => {
+
+        // jangan proses saat halaman baru pertama dibuka
+        if (!halamanSudahAktif.current) return;
+
+        if (document.visibilityState === "hidden") {
+
+          setJumlahPelanggaran((prev) => {
+
+            const total = prev + 1;
+
+            if (total === 1) {
+
+              Swal.fire({
+                icon: "warning",
+                title: "Peringatan!",
+                text: "Anda terdeteksi keluar dari halaman ujian.",
+                confirmButtonColor: "#16a34a"
+              });
+
+            }
+
+            if (total === 2) {
+
+              audio.play();
+
+              Swal.fire({
+                icon: "error",
+                title: "Peringatan Kedua",
+                text: "Anda kembali meninggalkan halaman ujian.",
+                confirmButtonColor: "#dc2626"
+              });
+
+            }
+
+            if (total >= 3) {
+
+              audio.play();
+
+              Swal.fire({
+                icon: "error",
+                title: "Batas Pelanggaran Tercapai",
+                text: `Total pelanggaran: ${total}`,
+                confirmButtonColor: "#991b1b"
+              });
+
+            }
+
+            return total;
+
+          });
+
+        }
+
+      };
+
+      document.addEventListener(
+        "visibilitychange",
+        handleVisibility
+      );
+
+      return () => {
+        clearTimeout(timer);
+
+        document.removeEventListener(
+          "visibilitychange",
+          handleVisibility
+        );
+      };
+
+    }, []);
+
+  useEffect(() => {
+  const audio = new Audio("/warning.mp3");
+
+  const handleFullscreen = () => {
+
+    // abaikan jika PDF belum dibuka
+    if (!fileAktif) return;
+
+    if (!document.fullscreenElement) {
+
+      setJumlahPelanggaran((prev) => {
+
+        const total = prev + 1;
+
+        audio.play();
+
+        Swal.fire({
+          icon: "warning",
+          title: "Peringatan!",
+          text: "Anda keluar dari mode ujian fullscreen.",
+          confirmButtonColor: "#dc2626"
+        });
+
+        return total;
+
+      });
+
+    }
+
+  };
+
+  document.addEventListener(
+    "fullscreenchange",
+    handleFullscreen
+  );
+
+  return () => {
+
+    document.removeEventListener(
+      "fullscreenchange",
+      handleFullscreen
+    );
+
+  };
+
+}, [fileAktif]);
 
   return (
     <main className="relative overflow-hidden min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-100">
@@ -42,6 +175,19 @@ export default function UjianPage() {
           <p className="text-gray-500 text-lg max-w-2xl mx-auto">
             Silakan lihat jadwal ujian dan buka soal sesuai waktu yang telah ditentukan.
           </p>
+
+          <div className="
+          inline-flex mt-4
+          px-4 py-2
+          rounded-xl
+          bg-red-100
+          text-red-600
+          font-semibold
+          ">
+
+            Pelanggaran: {jumlahPelanggaran}
+
+          </div>
 
         </div>
 
@@ -225,23 +371,34 @@ export default function UjianPage() {
 
                 {status==="Tersedia" ? (
 
-                  <a
-                    href={item.file}
-                    target="_blank"
-                    className="
-                    mt-6 w-full flex items-center
-                    justify-center gap-2
-                    bg-gradient-to-r
-                    from-green-600 to-emerald-500
-                    text-white py-3 rounded-xl
-                    font-semibold hover:scale-105 transition
-                    "
-                  >
+              <button
+                onClick={async () => {
 
-                    <FileText size={18}/>
-                    Buka Soal
+                  setFileAktif(item.file);
 
-                  </a>
+                  // masuk fullscreen otomatis
+                  if (!document.fullscreenElement) {
+                    try {
+                      await document.documentElement.requestFullscreen();
+                    } catch (err) {
+                      console.log("Fullscreen gagal:", err);
+                    }
+                  }
+
+                }}
+                className="
+                mt-6 w-full flex items-center
+                justify-center gap-2
+                bg-gradient-to-r
+                from-green-600 to-emerald-500
+                text-white py-3 rounded-xl
+                font-semibold hover:scale-105
+                transition
+                "
+              >
+                <FileText size={18}/>
+                Buka Soal
+              </button>
 
                 ) : (
 
@@ -280,6 +437,74 @@ export default function UjianPage() {
   </div>
 
 </div>
+
+    {fileAktif && (
+
+    <div className="
+    fixed inset-0
+    bg-black/60
+    z-50
+    flex items-center justify-center
+    p-5
+    ">
+
+      <div className="
+      bg-white rounded-3xl
+      w-full h-[90vh]
+      max-w-6xl
+      overflow-hidden
+      shadow-2xl
+      ">
+
+        {/* Header */}
+
+        <div className="
+        flex justify-between items-center
+        px-6 py-4
+        border-b
+        ">
+
+          <h2 className="font-bold text-xl">
+            Soal Ujian
+          </h2>
+
+          <button
+            onClick={() => {
+
+              setFileAktif(null);
+
+              if (document.fullscreenElement) {
+                document.exitFullscreen();
+              }
+
+            }}
+            className="
+            p-2 rounded-full
+            bg-red-500 text-white
+            hover:scale-110
+            hover:bg-red-600
+            transition
+            "
+          >
+
+            <X size={20} />
+
+          </button>
+
+        </div>
+
+        {/* PDF */}
+
+        <iframe
+          src={fileAktif}
+          className="w-full h-full"
+        />
+
+      </div>
+
+    </div>
+
+    )}
 
     </main>
   );
