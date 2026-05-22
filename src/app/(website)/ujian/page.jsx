@@ -16,7 +16,6 @@ export default function UjianPage() {
   const [now, setNow] = useState(new Date());
   const [kelasAktif, setKelasAktif] = useState("X");
   const [fileAktif, setFileAktif] = useState(null);
-  const [jumlahPelanggaran, setJumlahPelanggaran] = useState(0);
   const halamanSudahAktif = useRef(false);
 
   useEffect(() => {
@@ -27,117 +26,58 @@ export default function UjianPage() {
     return () => clearInterval(interval);
   }, []);
 
-    useEffect(() => {
+useEffect(() => {
 
-      const audio = new Audio("/warning.mp3");
-
-      // tandai bahwa halaman sudah aktif sesudah render awal
-      const timer = setTimeout(() => {
-        halamanSudahAktif.current = true;
-      }, 2000);
-
-      const handleVisibility = () => {
-
-        // jangan proses saat halaman baru pertama dibuka
-        if (!halamanSudahAktif.current) return;
-
-        if (document.visibilityState === "hidden") {
-
-          setJumlahPelanggaran((prev) => {
-
-            const total = prev + 1;
-
-            if (total === 1) {
-
-              Swal.fire({
-                icon: "warning",
-                title: "Peringatan!",
-                text: "Anda terdeteksi keluar dari halaman ujian.",
-                confirmButtonColor: "#16a34a"
-              });
-
-            }
-
-            if (total === 2) {
-
-              audio.play();
-
-              Swal.fire({
-                icon: "error",
-                title: "Peringatan Kedua",
-                text: "Anda kembali meninggalkan halaman ujian.",
-                confirmButtonColor: "#dc2626"
-              });
-
-            }
-
-            if (total >= 3) {
-
-              audio.play();
-
-              Swal.fire({
-                icon: "error",
-                title: "Batas Pelanggaran Tercapai",
-                text: `Total pelanggaran: ${total}`,
-                confirmButtonColor: "#991b1b"
-              });
-
-            }
-
-            return total;
-
-          });
-
-        }
-
-      };
-
-      document.addEventListener(
-        "visibilitychange",
-        handleVisibility
-      );
-
-      return () => {
-        clearTimeout(timer);
-
-        document.removeEventListener(
-          "visibilitychange",
-          handleVisibility
-        );
-      };
-
-    }, []);
-
-  useEffect(() => {
   const audio = new Audio("/warning.mp3");
 
-  const handleFullscreen = () => {
+  const triggerPeringatan = () => {
 
-    // abaikan jika PDF belum dibuka
+    // hanya aktif saat soal sedang dibuka
     if (!fileAktif) return;
 
-    if (!document.fullscreenElement) {
+    // bunyi
+    audio.play().catch(() => {});
 
-      setJumlahPelanggaran((prev) => {
+    // getar HP
+    if ("vibrate" in navigator) {
+      navigator.vibrate([300, 200, 300]);
+    }
 
-        const total = prev + 1;
+    Swal.fire({
+      icon: "warning",
+      title: "Peringatan!",
+      text: "Anda terdeteksi keluar dari halaman ujian.",
+      confirmButtonColor: "#dc2626",
+      allowOutsideClick: false
+    });
 
-        audio.play();
+  };
 
-        Swal.fire({
-          icon: "warning",
-          title: "Peringatan!",
-          text: "Anda keluar dari mode ujian fullscreen.",
-          confirmButtonColor: "#dc2626"
-        });
+  const handleVisibility = () => {
 
-        return total;
-
-      });
-
+    if (document.visibilityState === "hidden") {
+      triggerPeringatan();
     }
 
   };
+
+  const handleFullscreen = () => {
+
+    if (!document.fullscreenElement && fileAktif) {
+      triggerPeringatan();
+    }
+
+  };
+
+  window.addEventListener(
+    "blur",
+    triggerPeringatan
+  );
+
+  document.addEventListener(
+    "visibilitychange",
+    handleVisibility
+  );
 
   document.addEventListener(
     "fullscreenchange",
@@ -145,6 +85,16 @@ export default function UjianPage() {
   );
 
   return () => {
+
+    window.removeEventListener(
+      "blur",
+      triggerPeringatan
+    );
+
+    document.removeEventListener(
+      "visibilitychange",
+      handleVisibility
+    );
 
     document.removeEventListener(
       "fullscreenchange",
@@ -175,19 +125,6 @@ export default function UjianPage() {
           <p className="text-gray-500 text-lg max-w-2xl mx-auto">
             Silakan lihat jadwal ujian dan buka soal sesuai waktu yang telah ditentukan.
           </p>
-
-          <div className="
-          inline-flex mt-4
-          px-4 py-2
-          rounded-xl
-          bg-red-100
-          text-red-600
-          font-semibold
-          ">
-
-            Pelanggaran: {jumlahPelanggaran}
-
-          </div>
 
         </div>
 
