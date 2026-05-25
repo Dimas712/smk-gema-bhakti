@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import jadwalUjian from "@/data/jadwalUjian"; 
 import Swal from "sweetalert2";
+import PdfToImage from "@/components/PdfToImage";
 
 export default function UjianPage() {
   const [now, setNow] = useState(new Date());
@@ -63,6 +64,8 @@ useEffect(() => {
 
   };
 
+  
+
   // pindah tab / minimize
   const handleVisibility = () => {
     if (
@@ -96,9 +99,13 @@ useEffect(() => {
   // blok ESC
   const handleKeyDown = (e) => {
 
-    if (e.key === "Escape") {
+    if (
+      (e.ctrlKey && e.key==="c") ||
+      (e.ctrlKey && e.key==="a") ||
+      (e.ctrlKey && e.key==="p") ||
+      (e.ctrlKey && e.key==="s")
+    ) {
       e.preventDefault();
-      triggerPeringatan();
     }
 
   };
@@ -476,10 +483,13 @@ useEffect(() => {
 
         {/* PDF */}
 
-        <iframe
-          src={fileAktif}
-          className="w-full h-full"
+      <div className="h-full overflow-auto">
+
+        <PdfToImage
+            file={fileAktif}
         />
+
+      </div>
 
       </div>
 
