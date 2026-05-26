@@ -18,6 +18,8 @@ export default function UjianPage() {
   const [kelasAktif, setKelasAktif] = useState("X");
   const [fileAktif, setFileAktif] = useState(null);
   const halamanSudahAktif = useRef(false);
+  const [pelanggaran, setPelanggaran] = useState({});
+  const [soalTerkunci, setSoalTerkunci] = useState({});
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -34,37 +36,68 @@ useEffect(() => {
 
   const triggerPeringatan = async () => {
 
-    // cegah popup berkali-kali
     if (halamanSudahAktif.current) return;
 
     halamanSudahAktif.current = true;
 
-    // bunyi
-    audio.currentTime = 0;
-    audio.play().catch(() => {});
+    if (fileAktif) {
+      tambahPelanggaran(fileAktif);
+    }
 
-    // getar HP
+    const audio = new Audio("/music.mp3");
+
+    audio.currentTime = 0;
+    audio.play().catch(()=>{});
+
     if ("vibrate" in navigator) {
-      navigator.vibrate([500, 200, 500]);
+      navigator.vibrate([500,200,500]);
     }
 
     await Swal.fire({
-      icon: "warning",
-      title: "Peringatan!",
-      text: "Anda terdeteksi keluar dari mode ujian.",
-      confirmButtonColor: "#dc2626",
-      allowOutsideClick: false,
-      allowEscapeKey: false
+      icon:"warning",
+      title:"Peringatan!",
+      text:"Anda terdeteksi keluar dari mode ujian.",
+      confirmButtonColor:"#dc2626",
+      allowOutsideClick:false
     });
 
-    // reset supaya bisa muncul lagi nanti
-    setTimeout(() => {
-      halamanSudahAktif.current = false;
-    }, 1000);
-
+    setTimeout(()=>{
+      halamanSudahAktif.current=false;
+    },1000);
   };
 
-  
+  const tambahPelanggaran = (namaSoal) => {
+  setPelanggaran((prev) => {
+
+    const jumlah = (prev[namaSoal] || 0) + 1;
+
+    // jika sudah 2x langsung kunci
+    if (jumlah >= 2) {
+      setSoalTerkunci((lock) => ({
+        ...lock,
+        [namaSoal]: true
+      }));
+
+      Swal.fire({
+        icon: "error",
+        title: "Akses Diblokir",
+        text: "Anda telah keluar dari mode ujian 2 kali. Soal dikunci.",
+        allowOutsideClick: false
+      });
+
+      setFileAktif(null);
+
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      }
+    }
+
+    return {
+      ...prev,
+      [namaSoal]: jumlah
+    };
+  });
+};
 
   // pindah tab / minimize
   const handleVisibility = () => {
@@ -155,6 +188,21 @@ useEffect(() => {
   };
 
 }, [fileAktif]);
+
+  useEffect(() => {
+    const data = localStorage.getItem("soalTerkunci");
+
+    if (data) {
+      setSoalTerkunci(JSON.parse(data));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "soalTerkunci",
+      JSON.stringify(soalTerkunci)
+    );
+  }, [soalTerkunci]);
 
   return (
     <main className="relative overflow-hidden min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-100">
@@ -354,17 +402,16 @@ useEffect(() => {
                   )}
 
                 </div>
+                
+              {/* Tombol */}
 
-                {/* Tombol */}
-
-                {status==="Tersedia" ? (
+              {status==="Tersedia" && !soalTerkunci[item.file] ? (
 
               <button
                 onClick={async () => {
 
                   setFileAktif(item.file);
 
-                  // masuk fullscreen otomatis
                   if (!document.fullscreenElement) {
                     try {
                       await document.documentElement.requestFullscreen();
@@ -388,27 +435,43 @@ useEffect(() => {
                 Buka Soal
               </button>
 
-                ) : (
+              ) : soalTerkunci[item.file] ? (
 
-                  <button
-                    disabled
-                    className="
-                    mt-6 w-full flex items-center
-                    justify-center gap-2
-                    bg-gray-200 text-gray-500
-                    py-3 rounded-xl cursor-not-allowed
-                    "
-                  >
+              <button
+                disabled
+                className="
+                mt-6 w-full flex items-center
+                justify-center gap-2
+                bg-red-200 text-red-700
+                py-3 rounded-xl
+                cursor-not-allowed
+                "
+              >
+                <Lock size={18}/>
+                Soal Dikunci
+              </button>
 
-                    <Lock size={18}/>
+              ) : (
 
-                    {status==="Belum Dimulai"
-                      ? "Belum Dimulai"
-                      : "Ujian Selesai"}
+              <button
+                disabled
+                className="
+                mt-6 w-full flex items-center
+                justify-center gap-2
+                bg-gray-200 text-gray-500
+                py-3 rounded-xl
+                cursor-not-allowed
+                "
+              >
+                <Lock size={18}/>
 
-                  </button>
+                {status==="Belum Dimulai"
+                  ? "Belum Dimulai"
+                  : "Ujian Selesai"}
 
-                )}
+              </button>
+
+              )}
 
               </div>
 
