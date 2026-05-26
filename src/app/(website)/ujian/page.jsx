@@ -30,7 +30,7 @@ export default function UjianPage() {
 useEffect(() => {
   if (!fileAktif) return;
 
-  const audio = new Audio("/music/sound.mp3");
+  const audio = new Audio("/music");
 
   const triggerPeringatan = async () => {
 

@@ -139,7 +139,7 @@ const jadwalUjian = {
       mapel: [
         {
           nama: "Administrasi Perkantoran",
-          file: "/soal/ADM.pdf",
+          file: "/soal/admXI.pdf",
           mulai: "2026-06-03T07:30:00",
           selesai: "2026-06-03T08:30:00",
         },
