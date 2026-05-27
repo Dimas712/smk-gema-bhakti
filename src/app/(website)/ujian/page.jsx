@@ -32,39 +32,68 @@ export default function UjianPage() {
 useEffect(() => {
   if (!fileAktif) return;
 
-  const audio = new Audio("/music");
+const triggerPeringatan = async () => {
 
-  const triggerPeringatan = async () => {
+  if (halamanSudahAktif.current) return;
 
-    if (halamanSudahAktif.current) return;
+  halamanSudahAktif.current = true;
 
-    halamanSudahAktif.current = true;
+  let jumlahPelanggaran = 0;
 
-    if (fileAktif) {
-      tambahPelanggaran(fileAktif);
-    }
+  // tambah pelanggaran
+  if (fileAktif) {
+    jumlahPelanggaran =
+      (pelanggaran[fileAktif] || 0) + 1;
 
-    const audio = new Audio("/music.mp3");
+    tambahPelanggaran(fileAktif);
+  }
 
-    audio.currentTime = 0;
-    audio.play().catch(()=>{});
+  // getar
+  if ("vibrate" in navigator) {
+    navigator.vibrate([500,200,500]);
+  }
 
-    if ("vibrate" in navigator) {
-      navigator.vibrate([500,200,500]);
-    }
+  // hentikan suara sebelumnya
+  window.speechSynthesis.cancel();
 
-    await Swal.fire({
-      icon:"warning",
-      title:"Peringatan!",
-      text:"Anda terdeteksi keluar dari mode ujian.",
-      confirmButtonColor:"#dc2626",
-      allowOutsideClick:false
-    });
+  let pesanSuara = "";
 
-    setTimeout(()=>{
-      halamanSudahAktif.current=false;
-    },1000);
-  };
+  // pelanggaran pertama
+  if (jumlahPelanggaran === 1) {
+    pesanSuara =
+      "Peringatan. Anda telah keluar dari halaman ujian. Jika pelanggaran terjadi dua kali, akses soal akan dikunci.";
+  }
+
+  // pelanggaran kedua
+  else if (jumlahPelanggaran >= 2) {
+    pesanSuara =
+      "Perhatian. Anda telah keluar dari halaman ujian dua kali. Akses soal telah dikunci.";
+  }
+
+  const speech = new SpeechSynthesisUtterance(
+    pesanSuara
+  );
+
+  speech.lang = "id-ID";
+  speech.rate = 0.9;
+  speech.pitch = 1;
+  speech.volume = 1;
+
+  window.speechSynthesis.speak(speech);
+
+  await Swal.fire({
+    icon: "warning",
+    title: "Peringatan!",
+    text: "Anda terdeteksi keluar dari mode ujian.",
+    confirmButtonColor:"#dc2626",
+    allowOutsideClick:false
+  });
+
+  setTimeout(() => {
+    halamanSudahAktif.current = false;
+  },1000);
+
+};
 
   const tambahPelanggaran = (namaSoal) => {
   setPelanggaran((prev) => {
@@ -189,20 +218,36 @@ useEffect(() => {
 
 }, [fileAktif]);
 
-  useEffect(() => {
-    const data = localStorage.getItem("soalTerkunci");
+useEffect(() => {
+  const data = localStorage.getItem("soalTerkunci");
 
-    if (data) {
-      setSoalTerkunci(JSON.parse(data));
-    }
-  }, []);
+  if (data) {
+    setSoalTerkunci(JSON.parse(data));
+  }
+}, []);
 
-  useEffect(() => {
-    localStorage.setItem(
-      "soalTerkunci",
-      JSON.stringify(soalTerkunci)
-    );
-  }, [soalTerkunci]);
+useEffect(() => {
+  localStorage.setItem(
+    "soalTerkunci",
+    JSON.stringify(soalTerkunci)
+  );
+}, [soalTerkunci]);
+
+// tambah bagian ini
+useEffect(() => {
+  const data = localStorage.getItem("pelanggaran");
+
+  if (data) {
+    setPelanggaran(JSON.parse(data));
+  }
+}, []);
+
+useEffect(() => {
+  localStorage.setItem(
+    "pelanggaran",
+    JSON.stringify(pelanggaran)
+  );
+}, [pelanggaran]);
 
   return (
     <main className="relative overflow-hidden min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-100">
