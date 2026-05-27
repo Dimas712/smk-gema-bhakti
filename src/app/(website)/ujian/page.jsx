@@ -17,6 +17,7 @@ export default function UjianPage() {
   const [now, setNow] = useState(new Date());
   const [kelasAktif, setKelasAktif] = useState("X");
   const [fileAktif, setFileAktif] = useState(null);
+  const [soalAktif, setSoalAktif] = useState(null);
   const halamanSudahAktif = useRef(false);
   const [pelanggaran, setPelanggaran] = useState({});
   const [soalTerkunci, setSoalTerkunci] = useState({});
@@ -455,17 +456,69 @@ useEffect(() => {
               <button
                 onClick={async () => {
 
-                  setFileAktif(item.file);
+                  let fileSoal = item.file;
+
+                  // khusus Matematika kelas X
+                    if (
+                      kelasAktif === "X" &&
+                      item.nama.toLowerCase().includes("matematika")
+                    ) {
+
+                    const result = await Swal.fire({
+                      title: "Pilih Kelas",
+                      text: "Pilih kelas Anda",
+                      input: "select",
+                      inputOptions: {
+                        A: "Kelas A",
+                        B: "Kelas B",
+                        C: "Kelas C",
+                        D: "Kelas D"
+                      },
+                      inputPlaceholder: "Pilih kelas",
+                      showCancelButton: true,
+                      confirmButtonText: "Lanjut",
+                      cancelButtonText: "Batal",
+                      confirmButtonColor: "#16a34a",
+                      cancelButtonColor: "#dc2626",
+                      reverseButtons: true,
+                      allowOutsideClick: false
+                    });
+
+                    if (!result.isConfirmed) return;
+
+                    const kelas = result.value;
+
+                    // A dan B
+                    if (
+                      kelas === "A" ||
+                      kelas === "B"
+                    ) {
+                      fileSoal = "/soal/matematika_ab.pdf";
+                    }
+
+                    // C dan D
+                    else {
+                      fileSoal = "/soal/matematika_cd.pdf";
+                    }
+
+                  }
+
+                  setSoalAktif(item.file); // simpan soal asli
+                  setFileAktif(fileSoal);  // simpan PDF yang dibuka
 
                   if (!document.fullscreenElement) {
                     try {
                       await document.documentElement.requestFullscreen();
                     } catch (err) {
-                      console.log("Fullscreen gagal:", err);
+                      console.log(
+                        "Fullscreen gagal:",
+                        err
+                      );
                     }
                   }
 
                 }}
+
                 className="
                 mt-6 w-full flex items-center
                 justify-center gap-2
@@ -565,25 +618,56 @@ useEffect(() => {
           </h2>
 
           <button
-            onClick={() => {
+            onClick={async () => {
 
+            const result = await Swal.fire({
+              icon: "warning",
+              title: "Keluar Ujian?",
+              text: "Jika Anda keluar, soal ujian akan dianggap selesai.",
+              showCancelButton: true,
+
+              // hijau = keluar
+              confirmButtonText: "Keluar",
+
+              // merah = batal
+              cancelButtonText: "Batal",
+
+              confirmButtonColor: "#16a34a",
+              cancelButtonColor: "#dc2626",
+
+              reverseButtons: true,
+
+              allowOutsideClick: false,
+              allowEscapeKey: false
+            });
+
+            if (result.isConfirmed) {
+
+              // kunci soal
+            setSoalTerkunci((prev) => ({
+              ...prev,
+              [soalAktif]: true
+            }));
+
+              // tutup soal
               setFileAktif(null);
 
               if (document.fullscreenElement) {
                 document.exitFullscreen();
               }
 
+              Swal.fire({
+                icon: "success",
+                title: "Ujian Selesai",
+                text: "Anda telah keluar. Soal ujian telah selesai.",
+                confirmButtonColor: "#16a34a"
+              });
+            }
+
             }}
-            className="
-            p-2 rounded-full
-            bg-red-500 text-white
-            hover:scale-110
-            hover:bg-red-600
-            transition
-            "
           >
 
-            <X size={20} />
+            <X size={20} className="text-red-500 hover:text-red-600"/>
 
           </button>
 
