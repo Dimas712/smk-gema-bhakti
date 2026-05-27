@@ -42,11 +42,11 @@ const triggerPeringatan = async () => {
   let jumlahPelanggaran = 0;
 
   // tambah pelanggaran
-  if (fileAktif) {
+  if (soalAktif) {
     jumlahPelanggaran =
-      (pelanggaran[fileAktif] || 0) + 1;
+      (pelanggaran[soalAktif] || 0) + 1;
 
-    tambahPelanggaran(fileAktif);
+    tambahPelanggaran(soalAktif);
   }
 
   // getar
@@ -116,6 +116,7 @@ const triggerPeringatan = async () => {
       });
 
       setFileAktif(null);
+      setSoalAktif(null);
 
       if (document.fullscreenElement) {
         document.exitFullscreen();
@@ -217,7 +218,7 @@ const triggerPeringatan = async () => {
 
   };
 
-}, [fileAktif]);
+}, [fileAktif, soalAktif, pelanggaran]);
 
 useEffect(() => {
   const data = localStorage.getItem("soalTerkunci");
@@ -651,6 +652,7 @@ useEffect(() => {
 
               // tutup soal
               setFileAktif(null);
+              setSoalAktif(null);
 
               if (document.fullscreenElement) {
                 document.exitFullscreen();
