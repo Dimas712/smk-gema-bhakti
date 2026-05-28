@@ -96,7 +96,7 @@ const jadwalUjian = {
         {
           nama: "Ekonomi Bisnis",
           file: "/soal/ekonomiXI.pdf",
-          mulai: "2026-06-08T11:00:00",
+          mulai: "2026-05-08T11:00:00",
           selesai: "2026-06-08T12:00:00",
         },
       ],
@@ -120,7 +120,7 @@ const jadwalUjian = {
         {
           nama: "Matematika",
           file: "/soal/matematika.pdf",
-          mulai: "2026-05-09T10:00:00",
+          mulai: "2026-06-09T10:00:00",
           selesai: "2026-06-09T11:00:00",
         },
         {

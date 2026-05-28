@@ -141,17 +141,18 @@ const triggerPeringatan = async () => {
 
   // keluar fullscreen
   const handleFullscreen = async () => {
-    if (
-      fileAktif &&
-      !document.fullscreenElement
-    ) {
+
+    // kalau soal sudah ditutup jangan warning
+    if (!fileAktif) return;
+
+    if (!document.fullscreenElement) {
 
       triggerPeringatan();
 
-      // paksa masuk fullscreen lagi
       try {
         await document.documentElement.requestFullscreen();
       } catch (err) {}
+
     }
   };
 
@@ -250,6 +251,70 @@ useEffect(() => {
     JSON.stringify(pelanggaran)
   );
 }, [pelanggaran]);
+
+useEffect(() => {
+
+  if (!fileAktif || !soalAktif) return;
+
+  const cekWaktu = setInterval(() => {
+
+    const sekarang = new Date();
+
+    // cari soal aktif dari jadwal
+    let dataSoal = null;
+
+    Object.values(jadwalUjian).forEach((kelas) => {
+      kelas.forEach((hari) => {
+        hari.mapel.forEach((mapel) => {
+
+          if (mapel.file === soalAktif) {
+            dataSoal = mapel;
+          }
+
+        });
+      });
+    });
+
+    if (!dataSoal) return;
+
+    const waktuSelesai = new Date(
+      dataSoal.selesai
+    );
+
+    // jika waktu habis
+    if (sekarang > waktuSelesai) {
+      clearInterval(cekWaktu);
+
+      // kunci soal
+      setSoalTerkunci((prev) => ({
+        ...prev,
+        [soalAktif]: true
+      }));
+
+      // tutup soal
+      setFileAktif(null);
+      setSoalAktif(null);
+
+      // keluar fullscreen
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      }
+
+      Swal.fire({
+        icon: "info",
+        title: "Waktu Habis",
+        text: "Waktu ujian telah selesai.",
+        confirmButtonColor: "#16a34a",
+        allowOutsideClick: false
+      });
+
+    }
+
+  }, 1000);
+
+  return () => clearInterval(cekWaktu);
+
+}, [fileAktif, soalAktif]);
 
   return (
     <main className="relative overflow-hidden min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-100">
