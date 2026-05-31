@@ -19,7 +19,6 @@ export default function UjianPage() {
   const [fileAktif, setFileAktif] = useState(null);
   const [soalAktif, setSoalAktif] = useState(null);
   const halamanSudahAktif = useRef(false);
-  const [pelanggaran, setPelanggaran] = useState({});
   const [soalTerkunci, setSoalTerkunci] = useState({});
   const [sisaWaktu, setSisaWaktu] = useState("");
 
@@ -50,45 +49,20 @@ useEffect(() => {
   if (!fileAktif) return;
 
 const triggerPeringatan = async () => {
-
   if (halamanSudahAktif.current) return;
 
   halamanSudahAktif.current = true;
 
-  let jumlahPelanggaran = 0;
-
-  // tambah pelanggaran
-  if (soalAktif) {
-    jumlahPelanggaran =
-      (pelanggaran[soalAktif] || 0) + 1;
-
-    tambahPelanggaran(soalAktif);
-  }
-
   // getar
   if ("vibrate" in navigator) {
-    navigator.vibrate([500,200,500]);
+    navigator.vibrate([500, 200, 500]);
   }
 
   // hentikan suara sebelumnya
   window.speechSynthesis.cancel();
 
-  let pesanSuara = "";
-
-  // pelanggaran pertama
-  if (jumlahPelanggaran === 1) {
-    pesanSuara =
-      "Peringatan. Anda telah keluar dari halaman ujian. Jika pelanggaran terjadi dua kali, akses soal akan dikunci.";
-  }
-
-  // pelanggaran kedua
-  else if (jumlahPelanggaran >= 2) {
-    pesanSuara =
-      "Perhatian. Anda telah keluar dari halaman ujian dua kali. Akses soal telah dikunci.";
-  }
-
   const speech = new SpeechSynthesisUtterance(
-    pesanSuara
+    "Peringatan. Anda telah keluar dari halaman ujian. Ujian akan langsung diakhiri."
   );
 
   speech.lang = "id-ID";
@@ -99,56 +73,37 @@ const triggerPeringatan = async () => {
   window.speechSynthesis.speak(speech);
 
   await Swal.fire({
-    icon: "warning",
-    title: "Peringatan!",
-    text: "Anda terdeteksi keluar dari mode ujian.",
-    confirmButtonColor:"#dc2626",
-    allowOutsideClick:false
+    icon: "error",
+    title: "Ujian Diakhiri",
+    text: "Anda terdeteksi keluar dari mode ujian. Ujian dinyatakan selesai.",
+    confirmButtonColor: "#dc2626",
+    allowOutsideClick: false,
+    allowEscapeKey: false
   });
 
-  setTimeout(() => {
-    halamanSudahAktif.current = false;
-  },1000);
-
-};
-
-  const tambahPelanggaran = (namaSoal) => {
-  setPelanggaran((prev) => {
-
-    const jumlah = (prev[namaSoal] || 0) + 1;
-
-    // jika sudah 2x langsung kunci
-    if (jumlah >= 2) {
-      setSoalTerkunci((lock) => ({
-        ...lock,
-        [namaSoal]: true
-      }));
-
-      Swal.fire({
-        icon: "error",
-        title: "Akses Diblokir",
-        text: "Anda telah keluar dari mode ujian 2 kali. Soal dikunci.",
-        allowOutsideClick: false
-      });
-
-      sessionStorage.removeItem(
-        "peringatan5menit"
-      );
-
-      setFileAktif(null);
-      setSoalAktif(null);
-
-      if (document.fullscreenElement) {
-        document.exitFullscreen();
-      }
-    }
-
-    return {
+  // kunci soal
+  if (soalAktif) {
+    setSoalTerkunci((prev) => ({
       ...prev,
-      [namaSoal]: jumlah
-    };
-  });
+      [soalAktif]: true
+    }));
+  }
+
+  sessionStorage.removeItem("peringatan5menit");
+
+  // tutup soal
+  setFileAktif(null);
+  setSoalAktif(null);
+
+  // keluar fullscreen
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  }
+
+  halamanSudahAktif.current = false;
 };
+
+
 
   // pindah tab / minimize
   const handleVisibility = () => {
@@ -239,7 +194,7 @@ const triggerPeringatan = async () => {
 
   };
 
-}, [fileAktif, soalAktif, pelanggaran]);
+}, [fileAktif, soalAktif]);
 
 useEffect(() => {
   const data = localStorage.getItem("soalTerkunci");
@@ -255,22 +210,6 @@ useEffect(() => {
     JSON.stringify(soalTerkunci)
   );
 }, [soalTerkunci]);
-
-// tambah bagian ini
-useEffect(() => {
-  const data = localStorage.getItem("pelanggaran");
-
-  if (data) {
-    setPelanggaran(JSON.parse(data));
-  }
-}, []);
-
-useEffect(() => {
-  localStorage.setItem(
-    "pelanggaran",
-    JSON.stringify(pelanggaran)
-  );
-}, [pelanggaran]);
 
 useEffect(() => {
 
