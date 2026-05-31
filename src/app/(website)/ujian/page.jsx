@@ -22,6 +22,21 @@ export default function UjianPage() {
   const [pelanggaran, setPelanggaran] = useState({});
   const [soalTerkunci, setSoalTerkunci] = useState({});
 
+  const suaraSelesai = () => {
+  window.speechSynthesis.cancel();
+
+  const speech = new SpeechSynthesisUtterance(
+    "Anda telah menyelesaikan ujian."
+  );
+
+  speech.lang = "id-ID";
+  speech.rate = 0.9;
+  speech.pitch = 1;
+  speech.volume = 1;
+
+  window.speechSynthesis.speak(speech);
+};
+
   useEffect(() => {
     const interval = setInterval(() => {
       setNow(new Date());
@@ -300,6 +315,8 @@ useEffect(() => {
         document.exitFullscreen();
       }
 
+      suaraSelesai();
+
       Swal.fire({
         icon: "info",
         title: "Waktu Habis",
@@ -310,7 +327,7 @@ useEffect(() => {
 
     }
 
-  }, 1000);
+  }, 30000);
 
   return () => clearInterval(cekWaktu);
 
@@ -592,11 +609,11 @@ useEffect(() => {
                 from-green-600 to-emerald-500
                 text-white py-3 rounded-xl
                 font-semibold hover:scale-105
-                transition
+                transition cursor-pointer
                 "
               >
                 <FileText size={18}/>
-                Buka Soal
+                Mulai Ujian
               </button>
 
               ) : soalTerkunci[item.file] ? (
@@ -612,7 +629,7 @@ useEffect(() => {
                 "
               >
                 <Lock size={18}/>
-                Soal Dikunci
+                Ujian Selesai
               </button>
 
               ) : (
@@ -708,6 +725,8 @@ useEffect(() => {
             });
 
             if (result.isConfirmed) {
+
+              suaraSelesai();
 
               // kunci soal
             setSoalTerkunci((prev) => ({
