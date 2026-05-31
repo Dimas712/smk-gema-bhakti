@@ -21,6 +21,7 @@ export default function UjianPage() {
   const halamanSudahAktif = useRef(false);
   const [pelanggaran, setPelanggaran] = useState({});
   const [soalTerkunci, setSoalTerkunci] = useState({});
+  const [sisaWaktu, setSisaWaktu] = useState("");
 
   const suaraSelesai = () => {
   window.speechSynthesis.cancel();
@@ -129,6 +130,10 @@ const triggerPeringatan = async () => {
         text: "Anda telah keluar dari mode ujian 2 kali. Soal dikunci.",
         allowOutsideClick: false
       });
+
+      sessionStorage.removeItem(
+        "peringatan5menit"
+      );
 
       setFileAktif(null);
       setSoalAktif(null);
@@ -333,6 +338,86 @@ useEffect(() => {
 
 }, [fileAktif, soalAktif]);
 
+useEffect(() => {
+  if (!fileAktif || !soalAktif) {
+    setSisaWaktu("");
+    return;
+  }
+
+  const interval = setInterval(() => {
+
+    let dataSoal = null;
+
+    Object.values(jadwalUjian).forEach((kelas) => {
+      kelas.forEach((hari) => {
+        hari.mapel.forEach((mapel) => {
+
+          if (mapel.file === soalAktif) {
+            dataSoal = mapel;
+          }
+
+        });
+      });
+    });
+
+    if (!dataSoal) return;
+
+    const selesai = new Date(dataSoal.selesai);
+    const sekarang = new Date();
+
+    const selisih =
+      selesai.getTime() - sekarang.getTime();
+
+    // peringatan 5 menit
+    if (
+      selisih <= 300000 &&
+      selisih > 0 &&
+      !sessionStorage.getItem("peringatan5menit")
+    ) {
+
+      sessionStorage.setItem(
+        "peringatan5menit",
+        "true"
+      );
+
+      Swal.fire({
+        icon: "warning",
+        title: "Perhatian",
+        text: "Waktu ujian tersisa 5 menit lagi.",
+        confirmButtonColor: "#dc2626"
+      });
+
+    }
+
+    if (selisih <= 0) {
+      setSisaWaktu("00:00:00");
+      return;
+    }
+
+    const jam = Math.floor(
+      selisih / (1000 * 60 * 60)
+    );
+
+    const menit = Math.floor(
+      (selisih % (1000 * 60 * 60)) /
+      (1000 * 60)
+    );
+
+    const detik = Math.floor(
+      (selisih % (1000 * 60)) /
+      1000
+    );
+
+    setSisaWaktu(
+      `${String(jam).padStart(2,"0")}:${String(menit).padStart(2,"0")}:${String(detik).padStart(2,"0")}`
+    );
+
+  }, 1000);
+
+  return () => clearInterval(interval);
+
+}, [fileAktif, soalAktif]);
+
   return (
     <main className="relative overflow-hidden min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-100">
 
@@ -367,7 +452,7 @@ useEffect(() => {
           onClick={()=>setKelasAktif(kelas)}
           className={`
           px-8 py-5 rounded-2xl font-bold text-lg
-          transition-all duration-300 shadow-lg
+          transition-all duration-300 shadow-lg cursor-pointer
 
           ${
             kelasAktif===kelas
@@ -691,14 +776,37 @@ useEffect(() => {
         {/* Header */}
 
         <div className="
-        flex justify-between items-center
-        px-6 py-4
-        border-b
+          flex justify-between items-center
+          px-6 py-4
+          border-b
+          bg-gradient-to-r
+          from-green-50
+          to-white
+          sticky top-0 z-50
         ">
 
-          <h2 className="font-bold text-xl">
+        <div>
+          <h2 className="font-bold text-xl text-gray-800">
             Soal Ujian
           </h2>
+
+          <p className="text-sm text-gray-500">
+            SMK Gema Bhakti 1 Jasinga
+          </p>
+
+          <p
+            className={`
+            font-bold text-lg mt-1 animate-pulse
+            ${
+              sisaWaktu.startsWith("00:0")
+              ? "text-red-600"
+              : "text-green-600"
+            }
+            `}
+          >
+            ⏳ {sisaWaktu}
+          </p>
+        </div>
 
           <button
             onClick={async () => {
