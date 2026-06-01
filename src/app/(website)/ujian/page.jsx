@@ -19,6 +19,7 @@ export default function UjianPage() {
   const [fileAktif, setFileAktif] = useState(null);
   const [soalAktif, setSoalAktif] = useState(null);
   const halamanSudahAktif = useRef(false);
+  const wakeLockRef = useRef(null);
   const [pelanggaran, setPelanggaran] = useState({});
   const [soalTerkunci, setSoalTerkunci] = useState({});
   const [sisaWaktu, setSisaWaktu] = useState("");
@@ -134,6 +135,14 @@ const triggerPeringatan = async () => {
       sessionStorage.removeItem(
         "peringatan5menit"
       );
+
+      if (wakeLockRef.current) {
+        wakeLockRef.current
+          .release()
+          .catch(() => {});
+
+        wakeLockRef.current = null;
+      }
 
       setFileAktif(null);
       setSoalAktif(null);
@@ -311,6 +320,14 @@ useEffect(() => {
         [soalAktif]: true
       }));
 
+      if (wakeLockRef.current) {
+        wakeLockRef.current
+          .release()
+          .catch(() => {});
+
+        wakeLockRef.current = null;
+      }
+
       // tutup soal
       setFileAktif(null);
       setSoalAktif(null);
@@ -417,6 +434,79 @@ useEffect(() => {
   return () => clearInterval(interval);
 
 }, [fileAktif, soalAktif]);
+
+useEffect(() => {
+  let wakeLock = null;
+
+  const requestWakeLock = async () => {
+    try {
+      if (
+        "wakeLock" in navigator &&
+        fileAktif
+      ) {
+        wakeLock =
+          await navigator.wakeLock.request(
+            "screen"
+          );
+
+        wakeLockRef.current = wakeLock;
+
+        console.log(
+          "Wake Lock aktif"
+        );
+
+        wakeLock.addEventListener(
+          "release",
+          () => {
+            console.log(
+              "Wake Lock dilepas"
+            );
+          }
+        );
+      }
+    } catch (err) {
+      console.error(
+        "Wake Lock gagal:",
+        err
+      );
+    }
+  };
+
+  requestWakeLock();
+
+  // jika tab kembali aktif,
+  // minta lagi wake lock
+  const handleVisibility = async () => {
+    if (
+      document.visibilityState ===
+        "visible" &&
+      fileAktif &&
+      !wakeLockRef.current
+    ) {
+      requestWakeLock();
+    }
+  };
+
+  document.addEventListener(
+    "visibilitychange",
+    handleVisibility
+  );
+
+  return async () => {
+    document.removeEventListener(
+      "visibilitychange",
+      handleVisibility
+    );
+
+    if (wakeLock) {
+      try {
+        await wakeLock.release();
+      } catch {}
+    }
+
+    wakeLockRef.current = null;
+  };
+}, [fileAktif]);
 
   return (
     <main className="relative overflow-hidden min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-100">
@@ -841,7 +931,14 @@ useEffect(() => {
               ...prev,
               [soalAktif]: true
             }));
+            
+            if (wakeLockRef.current) {
+              wakeLockRef.current
+                .release()
+                .catch(() => {});
 
+              wakeLockRef.current = null;
+            }
               // tutup soal
               setFileAktif(null);
               setSoalAktif(null);
