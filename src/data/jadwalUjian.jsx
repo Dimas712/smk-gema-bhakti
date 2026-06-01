@@ -253,7 +253,7 @@ const jadwalUjian = {
         },
         {
           nama: "Matematika",
-          file: "/soal/matematika.pdf",
+          file: "/soal/matematikaXI.pdf",
           mulai: "2026-06-09T10:00:00",
           selesai: "2026-06-09T11:00:00",
         },
