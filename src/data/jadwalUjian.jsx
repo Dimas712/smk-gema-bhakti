@@ -23,7 +23,7 @@ const jadwalUjian = {
         },
         {
           nama: "Kewirausahaan",
-          file: "/soal/pkn.pdf",
+          file: "/soal/kewirausahaanX.pdf",
           mulai: "2026-06-03T11:00:00",
           selesai: "2026-06-03T12:00:00",
         },
@@ -47,7 +47,7 @@ const jadwalUjian = {
         },
         {
           nama: "Sejarah Indonesia",
-          file: "/soal/sejarahindonesia.pdf",
+          file: "/soal/sejarahX.pdf",
           mulai: "2026-06-04T10:00:00",
           selesai: "2026-06-04T11:00:00",
         },
@@ -59,13 +59,13 @@ const jadwalUjian = {
       mapel: [
         {
           nama: "PJOK",
-          file: "/soal/pjok.pdf",
+          file: "/soal/pjokX.pdf",
           mulai: "2026-06-05T07:30:00",
           selesai: "2026-06-05T08:30:00",
         },
         {
           nama: "BTQ",
-          file: "/soal/btq.pdf",
+          file: "/soal/btqX.pdf",
           mulai: "2026-06-05T08:30:00",
           selesai:"2026-06-05T09:30:00",
         },
@@ -95,7 +95,7 @@ const jadwalUjian = {
         },
         {
           nama: "Ekonomi Bisnis",
-          file: "/soal/ekonomiXI.pdf",
+          file: "/soal/ekonomiX.pdf",
           mulai: "2026-06-08T11:00:00",
           selesai: "2026-06-08T12:00:00",
         },
@@ -157,7 +157,7 @@ const jadwalUjian = {
         },
         {
           nama: "Kewirausahaan",
-          file: "/soal/pkn.pdf",
+          file: "/soal/kewirausahaanXI.pdf",
           mulai: "2026-06-03T11:00:00",
           selesai: "2026-06-03T12:00:00",
         },
@@ -175,13 +175,13 @@ const jadwalUjian = {
         },
         {
           nama: "Bahasa Sunda",
-          file: "/soal/sunda.pdf",
+          file: "/soal/sundaXI.pdf",
           mulai: "2026-06-04T08:30:00",
           selesai: "2026-06-04T09:30:00",
         },
         {
           nama: "Sejarah Indonesia",
-          file: "/soal/sindonesiaXI.pdf",
+          file: "/soal/sejarahXI.pdf",
           mulai: "2026-06-04T10:00:00",
           selesai: "2026-06-04T11:00:00",
         },
@@ -193,13 +193,13 @@ const jadwalUjian = {
       mapel: [
         {
           nama: "PJOK",
-          file: "/soal/pjok.pdf",
+          file: "/soal/pjokXI.pdf",
           mulai: "2026-06-05T07:30:00",
           selesai: "2026-06-05T08:30:00",
         },
         {
           nama: "BTQ",
-          file: "/soal/btq.pdf",
+          file: "/soal/btqXI.pdf",
           mulai: "2026-06-05T08:30:00",
           selesai:"2026-06-05T09:30:00",
         },
@@ -223,13 +223,13 @@ const jadwalUjian = {
         },
         {
           nama: "KKPI",
-          file: "/soal/kkpi.pdf",
+          file: "/soal/kkpiXI.pdf",
           mulai: "2026-06-08T10:00:00",
           selesai: "2026-06-08T11:00:00",
         },
         {
           nama: "Ekonomi Bisnis",
-          file: "/soal/ekonomibisnis.pdf",
+          file: "/soal/ekonomiXI.pdf",
           mulai: "2026-06-08T11:00:00",
           selesai: "2026-06-08T12:00:00",
         },
