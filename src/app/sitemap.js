@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const baseUrl = "https://smkgb1jasinga.vercel.app" // ganti ke domain asli jika sudah ada
+  const baseUrl = "https://smkgemabhakti1jasinga.vercel.app" // ganti ke domain asli jika sudah ada
 
   const now = new Date()
 
