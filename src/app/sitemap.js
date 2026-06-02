@@ -1,7 +1,7 @@
 export default function sitemap() {
-  const baseUrl = "https://smkgemabhakti1jasinga.vercel.app" // ganti ke domain asli jika sudah ada
+  const baseUrl = "https://smkgemabhakti1jasinga.vercel.app";
 
-  const now = new Date()
+  const now = new Date();
 
   return [
     // Home
@@ -28,7 +28,7 @@ export default function sitemap() {
       priority: 0.9,
     },
 
-    // Program Keahlian / Jurusan
+    // Tata Tertib
     {
       url: `${baseUrl}/profil/tata-tertib`,
       lastModified: now,
@@ -59,5 +59,13 @@ export default function sitemap() {
       changeFrequency: "yearly",
       priority: 0.6,
     },
-  ]
+
+    // Ujian
+    {
+      url: `${baseUrl}/ujian`,
+      lastModified: now,
+      changeFrequency: "daily",
+      priority: 0.95,
+    },
+  ];
 }
