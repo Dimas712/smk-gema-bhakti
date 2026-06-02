@@ -6,7 +6,7 @@ const jadwalUjian = {
         {
           nama: "Administrasi Perkantoran",
           file: "/soal/admX.pdf",
-          mulai: "2026-05-03T07:30:00",
+          mulai: "2026-06-03T07:30:00",
           selesai: "2026-06-03T08:30:00",
         },
         {
