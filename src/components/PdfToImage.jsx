@@ -26,7 +26,7 @@ export default function PdfToImage({ file }) {
           .getDocument(file)
           .promise;
 
-        const BATCH_SIZE = 3;
+        const BATCH_SIZE = 1;
 
         for (
           let startPage = 1;
