@@ -146,7 +146,7 @@ export default function PdfToImage({ file }) {
             className="
             w-full
             select-none
-            pointer-events-none
+            touch-manipulation
             "
           />
         </div>
