@@ -41,7 +41,7 @@ const jadwalUjian = {
           nama: "OTKK",
           folder: "akuntansiX",
           pages: 5,
-          mulai: "2026-06-04T07:30:00",
+          mulai: "2026-05-04T07:30:00",
           selesai: "2026-06-04T08:30:00",
         },
         {
