@@ -11,12 +11,12 @@ import {
 } from "lucide-react";
 import jadwalUjian from "@/data/jadwalUjian"; 
 import Swal from "sweetalert2";
-import PdfToImage from "@/components/PdfToImage";
+import SoalImages from "@/components/SoalImages";
 
 export default function UjianPage() {
   const [now, setNow] = useState(new Date());
   const [kelasAktif, setKelasAktif] = useState("X");
-  const [fileAktif, setFileAktif] = useState(null);
+  const [mapelAktif, setMapelAktif] = useState(null);
   const [soalAktif, setSoalAktif] = useState(null);
   const halamanSudahAktif = useRef(false);
   const wakeLockRef = useRef(null);
@@ -48,7 +48,7 @@ export default function UjianPage() {
   }, []);
 
 useEffect(() => {
-  if (!fileAktif) return;
+  if (!mapelAktif) return;
 
 const triggerPeringatan = async () => {
 
@@ -144,7 +144,7 @@ const triggerPeringatan = async () => {
         wakeLockRef.current = null;
       }
 
-      setFileAktif(null);
+      setMapelAktif(null);
       setSoalAktif(null);
 
       if (document.fullscreenElement) {
@@ -172,7 +172,7 @@ const triggerPeringatan = async () => {
   const handleFullscreen = async () => {
 
     // kalau soal sudah ditutup jangan warning
-    if (!fileAktif) return;
+    if (!mapelAktif) return;
 
     if (!document.fullscreenElement) {
 
@@ -248,7 +248,7 @@ const triggerPeringatan = async () => {
 
   };
 
-}, [fileAktif, soalAktif, pelanggaran]);
+}, [mapelAktif, soalAktif, pelanggaran]);
 
 useEffect(() => {
   const data = localStorage.getItem("soalTerkunci");
@@ -283,7 +283,7 @@ useEffect(() => {
 
 useEffect(() => {
 
-  if (!fileAktif || !soalAktif) return;
+  if (!mapelAktif) return;
 
   const cekWaktu = setInterval(() => {
 
@@ -296,8 +296,8 @@ useEffect(() => {
       kelas.forEach((hari) => {
         hari.mapel.forEach((mapel) => {
 
-          if (mapel.file === soalAktif) {
-            dataSoal = mapel;
+          if (mapel.nama === soalAktif) {
+            dataSoal = mapelAktif;
           }
 
         });
@@ -329,7 +329,7 @@ useEffect(() => {
       }
 
       // tutup soal
-      setFileAktif(null);
+      setMapelAktif(null);
       setSoalAktif(null);
 
       // keluar fullscreen
@@ -353,10 +353,10 @@ useEffect(() => {
 
   return () => clearInterval(cekWaktu);
 
-}, [fileAktif, soalAktif]);
+}, [mapelAktif, soalAktif]);
 
 useEffect(() => {
-  if (!fileAktif || !soalAktif) {
+  if (!mapelAktif) {
     setSisaWaktu("");
     return;
   }
@@ -369,8 +369,8 @@ useEffect(() => {
       kelas.forEach((hari) => {
         hari.mapel.forEach((mapel) => {
 
-          if (mapel.file === soalAktif) {
-            dataSoal = mapel;
+          if (mapel.nama === soalAktif) {
+            dataSoal = mapelAktif;
           }
 
         });
@@ -379,7 +379,7 @@ useEffect(() => {
 
     if (!dataSoal) return;
 
-    const selesai = new Date(dataSoal.selesai);
+    const selesai = new Date(mapelAktif.selesai);
     const sekarang = new Date();
 
     const selisih =
@@ -433,7 +433,7 @@ useEffect(() => {
 
   return () => clearInterval(interval);
 
-}, [fileAktif, soalAktif]);
+}, [mapelAktif, soalAktif]);
 
 useEffect(() => {
   let wakeLock = null;
@@ -442,7 +442,7 @@ useEffect(() => {
     try {
       if (
         "wakeLock" in navigator &&
-        fileAktif
+        mapelAktif
       ) {
         wakeLock =
           await navigator.wakeLock.request(
@@ -480,7 +480,7 @@ useEffect(() => {
     if (
       document.visibilityState ===
         "visible" &&
-      fileAktif &&
+      mapelAktif &&
       !wakeLockRef.current
     ) {
       requestWakeLock();
@@ -506,7 +506,7 @@ useEffect(() => {
 
     wakeLockRef.current = null;
   };
-}, [fileAktif]);
+}, [mapelAktif]);
 
   return (
     <main className="relative overflow-hidden min-h-screen bg-gradient-to-br from-green-50 via-white to-emerald-100">
@@ -709,89 +709,101 @@ useEffect(() => {
                 
               {/* Tombol */}
 
-              {status==="Tersedia" && !soalTerkunci[item.file] ? (
+              {status==="Tersedia" && !soalTerkunci[item.nama] ? (
 
-              <button
-                onClick={async () => {
+            <button
+              onClick={async () => {
 
-                  let fileSoal = item.file;
+                let mapelDipilih = item;
 
-                  // khusus Matematika kelas X
-                    if (
-                      kelasAktif === "X" &&
-                      item.nama.toLowerCase().includes("matematika")
-                    ) {
+                // khusus Matematika kelas X
+                if (
+                  kelasAktif === "X" &&
+                  item.nama.toLowerCase().includes("matematika")
+                ) {
 
-                    const result = await Swal.fire({
-                      title: "Pilih Kelas",
-                      text: "Pilih kelas Anda",
-                      input: "select",
-                      inputOptions: {
-                        A: "Kelas A",
-                        B: "Kelas B",
-                        C: "Kelas C",
-                        D: "Kelas D"
-                      },
-                      inputPlaceholder: "Pilih kelas",
-                      showCancelButton: true,
-                      confirmButtonText: "Lanjut",
-                      cancelButtonText: "Batal",
-                      confirmButtonColor: "#16a34a",
-                      cancelButtonColor: "#dc2626",
-                      reverseButtons: true,
-                      allowOutsideClick: false
-                    });
+                  const result = await Swal.fire({
+                    title: "Pilih Kelas",
+                    text: "Pilih kelas Anda",
+                    input: "select",
+                    inputOptions: {
+                      A: "Kelas A",
+                      B: "Kelas B",
+                      C: "Kelas C",
+                      D: "Kelas D"
+                    },
+                    inputPlaceholder: "Pilih kelas",
+                    showCancelButton: true,
+                    confirmButtonText: "Lanjut",
+                    cancelButtonText: "Batal",
+                    confirmButtonColor: "#16a34a",
+                    cancelButtonColor: "#dc2626",
+                    reverseButtons: true,
+                    allowOutsideClick: false
+                  });
 
-                    if (!result.isConfirmed) return;
+                  if (!result.isConfirmed) return;
 
-                    const kelas = result.value;
+                  const kelas = result.value;
 
-                    // A dan B
-                    if (
-                      kelas === "A" ||
-                      kelas === "B"
-                    ) {
-                      fileSoal = "/soal/matematika_ab.pdf";
-                    }
+                  // A dan B
+                  if (
+                    kelas === "A" ||
+                    kelas === "B"
+                  ) {
 
-                    // C dan D
-                    else {
-                      fileSoal = "/soal/matematika_cd.pdf";
-                    }
+                    mapelDipilih = {
+                      ...item,
+                      folder: "matematika_ab",
+                      pages: 5, // sesuaikan jumlah halaman
+                    };
 
                   }
 
-                  setSoalAktif(item.file); // simpan soal asli
-                  setFileAktif(fileSoal);  // simpan PDF yang dibuka
+                  // C dan D
+                  else {
 
-                  if (!document.fullscreenElement) {
-                    try {
-                      await document.documentElement.requestFullscreen();
-                    } catch (err) {
-                      console.log(
-                        "Fullscreen gagal:",
-                        err
-                      );
-                    }
+                    mapelDipilih = {
+                      ...item,
+                      folder: "matematika_cd",
+                      pages: 5, // sesuaikan jumlah halaman
+                    };
+
                   }
 
-                }}
+                }
 
-                className="
-                mt-6 w-full flex items-center
-                justify-center gap-2
-                bg-gradient-to-r
-                from-green-600 to-emerald-500
-                text-white py-3 rounded-xl
-                font-semibold hover:scale-105
-                transition cursor-pointer
-                "
-              >
-                <FileText size={18}/>
-                Mulai Ujian
-              </button>
+                setSoalAktif(item.nama);
 
-              ) : soalTerkunci[item.file] ? (
+                setMapelAktif(mapelDipilih);
+
+                if (!document.fullscreenElement) {
+                  try {
+                    await document.documentElement.requestFullscreen();
+                  } catch (err) {
+                    console.log(
+                      "Fullscreen gagal:",
+                      err
+                    );
+                  }
+                }
+
+              }}
+              className="
+              mt-6 w-full flex items-center
+              justify-center gap-2
+              bg-gradient-to-r
+              from-green-600 to-emerald-500
+              text-white py-3 rounded-xl
+              font-semibold hover:scale-105
+              transition cursor-pointer
+              "
+            >
+              <FileText size={18}/>
+              Mulai Ujian
+            </button>
+
+              ) : soalTerkunci[item.nama] ? (
 
               <button
                 disabled
@@ -845,7 +857,7 @@ useEffect(() => {
 
 </div>
 
-    {fileAktif && (
+    {mapelAktif && (
 
     <div className="
     fixed inset-0
@@ -940,7 +952,7 @@ useEffect(() => {
               wakeLockRef.current = null;
             }
               // tutup soal
-              setFileAktif(null);
+              setMapelAktif(null);
               setSoalAktif(null);
 
               if (document.fullscreenElement) {
@@ -968,8 +980,9 @@ useEffect(() => {
 
       <div className="h-full overflow-auto">
 
-        <PdfToImage
-            file={fileAktif}
+        <SoalImages
+          folder={mapelAktif.folder}
+          pages={mapelAktif.pages}
         />
 
       </div>
