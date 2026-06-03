@@ -50,7 +50,7 @@ export default function PdfToImage({ file }) {
 
             const viewport =
               page.getViewport({
-                scale: 1.5
+                scale: 1
               });
 
             const canvas =
@@ -73,7 +73,7 @@ export default function PdfToImage({ file }) {
             batchImages.push(
               canvas.toDataURL(
                 "image/webp",
-                0.8
+                0.7
               )
             );
           }
