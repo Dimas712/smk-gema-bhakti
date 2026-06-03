@@ -67,12 +67,14 @@ const jadwalUjian = {
         {
           nama: "PJOK",
           folder: "pjokX",
+          pages: 3,
           mulai: "2026-06-05T07:30:00",
           selesai: "2026-06-05T08:30:00",
         },
         {
           nama: "BTQ",
           folder: "btqX",
+          pages: 10,
           mulai: "2026-06-05T08:30:00",
           selesai:"2026-06-05T09:30:00",
         },
@@ -204,12 +206,14 @@ const jadwalUjian = {
         {
           nama: "PJOK",
           folder: "pjokXI",
+          pages: 4,
           mulai: "2026-06-05T07:30:00",
           selesai: "2026-06-05T08:30:00",
         },
         {
           nama: "BTQ",
           folder: "btqXI",
+          pages: 5,
           mulai: "2026-06-05T08:30:00",
           selesai:"2026-06-05T09:30:00",
         },
