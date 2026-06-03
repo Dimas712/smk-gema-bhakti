@@ -21,9 +21,6 @@ export default function SoalImages({
             loading="lazy"
             draggable={false}
             className="w-full mb-4 select-none"
-            style={{
-                touchAction: "pinch-zoom",
-            }}
           />
         )
       )}
