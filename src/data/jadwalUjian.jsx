@@ -13,6 +13,7 @@ const jadwalUjian = {
         {
           nama: "IPAS",
           folder: "ipasX",
+          pages: 5,
           mulai: "2026-06-03T08:30:00",
           selesai: "2026-06-03T09:30:00",
         },
@@ -53,7 +54,7 @@ const jadwalUjian = {
         {
           nama: "Sejarah Indonesia",
           folder: "sejarahX",
-          pages: 5,
+          pages: 6,
           mulai: "2026-06-04T10:00:00",
           selesai: "2026-06-04T11:00:00",
         },
@@ -176,18 +177,21 @@ const jadwalUjian = {
         {
           nama: "OTKK",
           folder: "akuntansiXI",
+          pages: 1,
           mulai: "2026-06-04T07:30:00",
           selesai: "2026-06-04T08:30:00",
         },
         {
           nama: "Bahasa Sunda",
           folder: "sundaXI",
+          pages: 5,
           mulai: "2026-06-04T08:30:00",
           selesai: "2026-06-04T09:30:00",
         },
         {
           nama: "Sejarah Indonesia",
           folder: "sejarahXI",
+          pages: 6,
           mulai: "2026-06-04T10:00:00",
           selesai: "2026-06-04T11:00:00",
         },
