@@ -73,7 +73,7 @@ export default function PdfToImage({ file }) {
             batchImages.push(
               canvas.toDataURL(
                 "image/webp",
-                0.7
+                0.65
               )
             );
           }
