@@ -48,9 +48,14 @@ export default function PdfToImage({ file }) {
             const page =
               await pdf.getPage(pageNum);
 
+            const scale =
+              window.innerWidth < 768
+                ? 0.8
+                : 1.2;
+
             const viewport =
               page.getViewport({
-                scale: 1
+                scale
               });
 
             const canvas =
@@ -70,11 +75,16 @@ export default function PdfToImage({ file }) {
               viewport
             }).promise;
 
-            batchImages.push(
-              canvas.toDataURL(
+            const blob = await new Promise((resolve) =>
+              canvas.toBlob(
+                resolve,
                 "image/webp",
-                0.65
+                0.7
               )
+            );
+
+            batchImages.push(
+              URL.createObjectURL(blob)
             );
           }
 
@@ -123,20 +133,6 @@ export default function PdfToImage({ file }) {
           key={index}
           className="relative mb-5"
         >
-          {/* Watermark */}
-          <div
-            className="
-            absolute inset-0
-            flex items-center justify-center
-            text-6xl font-bold
-            text-black/10
-            rotate-[-30deg]
-            pointer-events-none
-            select-none
-            "
-          >
-            SMK GEMA BHAKTI 1 JASINGA
-          </div>
 
           <img
             src={img}
