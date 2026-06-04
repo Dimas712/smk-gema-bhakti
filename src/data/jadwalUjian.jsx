@@ -150,13 +150,13 @@ const jadwalUjian = {
           nama: "Administrasi Perkantoran",
           folder: "admXI",
           mulai: "2026-06-03T07:30:00",
-          selesai: "2026-06-03T08:30:00",
+          selesai: "2026-06-08T08:30:00",
         },
         {
           nama: "IPAS",
           folder: "ipasXI",
           mulai: "2026-06-03T08:30:00",
-          selesai: "2026-06-03T09:30:00",
+          selesai: "2026-06-08T09:30:00",
         },
         {
           nama: "Komunikasi",
