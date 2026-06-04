@@ -1,28 +1,25 @@
 "use client";
 
-import {
-  TransformWrapper,
-  TransformComponent,
-} from "react-zoom-pan-pinch";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
-export default function SoalImages({
-  folder,
-  pages,
-}) {
+export default function SoalImages({ folder, pages }) {
   return (
-    <TransformWrapper
-      initialScale={1}
-      minScale={1}
-      maxScale={5}
-      wheel={{ disabled: false }}
-      pinch={{ disabled: false }}
-      doubleClick={{ disabled: false }}
-    >
-      <TransformComponent>
-        <div>
-          {Array.from(
-            { length: pages },
-            (_, i) => (
+    <div className="w-full overflow-auto">
+      <TransformWrapper
+        initialScale={1}
+        minScale={1}
+        maxScale={4}
+        panning={{ disabled: false }}
+        wheel={{
+          step: 0.1,
+          smoothStep: 0.01,
+          activationKeys: [], // 🔥 ini kunci penting
+        }}
+        doubleClick={{ disabled: false }}
+      >
+        <TransformComponent>
+          <div className="w-full">
+            {Array.from({ length: pages }, (_, i) => (
               <img
                 key={i}
                 src={`/soal/${folder}/${i + 1}.webp`}
@@ -31,10 +28,10 @@ export default function SoalImages({
                 draggable={false}
                 className="w-full mb-4 select-none"
               />
-            )
-          )}
-        </div>
-      </TransformComponent>
-    </TransformWrapper>
+            ))}
+          </div>
+        </TransformComponent>
+      </TransformWrapper>
+    </div>
   );
 }
