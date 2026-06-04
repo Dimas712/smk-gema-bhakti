@@ -155,6 +155,7 @@ const jadwalUjian = {
         {
           nama: "IPAS",
           folder: "ipasXI",
+          pages: 2,
           mulai: "2026-06-03T08:30:00",
           selesai: "2026-06-08T09:30:00",
         },
