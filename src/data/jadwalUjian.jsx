@@ -28,7 +28,7 @@ const jadwalUjian = {
           nama: "Kewirausahaan",
           folder: "kewirausahaanX",
           pages: 5,
-          mulai: "2026-06-03T11:00:00",
+          mulai: "2026-06-08T11:00:00",
           selesai: "2026-06-03T12:00:00",
         },
       ],
