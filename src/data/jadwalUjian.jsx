@@ -181,7 +181,7 @@ const jadwalUjian = {
           folder: "akuntansiXI",
           pages: 1,
           mulai: "2026-06-04T07:30:00",
-          selesai: "2026-06-04T08:30:00",
+          selesai: "2026-06-08T08:30:00",
         },
         {
           nama: "Bahasa Sunda",
