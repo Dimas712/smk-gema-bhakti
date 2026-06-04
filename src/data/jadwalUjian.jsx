@@ -68,7 +68,7 @@ const jadwalUjian = {
           nama: "PJOK",
           folder: "pjokX",
           pages: 3,
-          mulai: "2026-05-05T07:30:00",
+          mulai: "2026-06-05T07:30:00",
           selesai: "2026-06-05T08:30:00",
         },
         {
