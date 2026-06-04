@@ -49,7 +49,7 @@ const jadwalUjian = {
           folder: "sundaX",
           pages: 5,
           mulai: "2026-06-04T08:30:00",
-          selesai: "2026-06-04T09:30:00",
+          selesai: "2026-06-04T10:30:00",
         },
         {
           nama: "Sejarah Indonesia",
