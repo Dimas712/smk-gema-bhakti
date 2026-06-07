@@ -755,7 +755,7 @@ useEffect(() => {
                     mapelDipilih = {
                       ...item,
                       folder: "matematika_ab",
-                      pages: 5, // sesuaikan jumlah halaman
+                      pages: 8, // sesuaikan jumlah halaman
                     };
 
                   }
@@ -766,7 +766,7 @@ useEffect(() => {
                     mapelDipilih = {
                       ...item,
                       folder: "matematika_cd",
-                      pages: 5, // sesuaikan jumlah halaman
+                      pages: 2, // sesuaikan jumlah halaman
                     };
 
                   }

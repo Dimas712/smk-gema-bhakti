@@ -121,12 +121,14 @@ const jadwalUjian = {
         {
           nama: "Bahasa Inggris",
           folder: "inggrisX",
+          pages: 5,
           mulai: "2026-06-09T07:30:00",
           selesai: "2026-06-09T08:30:00",
         },
         {
           nama: "PPKN",
           folder: "ppknX",
+          pages: 4,
           mulai: "2026-06-09T08:30:00",
           selesai: "2026-06-09T09:30:00",
         },
@@ -139,6 +141,7 @@ const jadwalUjian = {
         {
           nama: "SBK",
           folder: "sbkX",
+          pages: 4,
           mulai: "2026-06-09T11:00:00",
           selesai: "2026-06-09T12:00:00",
         },
@@ -268,24 +271,28 @@ const jadwalUjian = {
         {
           nama: "Bahasa Inggris",
           folder: "inggrisXI",
+          pages: 3,
           mulai: "2026-06-09T07:30:00",
           selesai: "2026-06-09T08:30:00",
         },
         {
           nama: "PPKN",
           folder: "pkn",
+          pages: 6,
           mulai: "2026-06-09T08:30:00",
           selesai: "2026-06-09T09:30:00",
         },
         {
           nama: "Matematika",
           folder: "matematikaXI",
+          pages: 1,
           mulai: "2026-06-09T10:00:00",
           selesai: "2026-06-09T11:00:00",
         },
         {
           nama: "SBK",
           folder: "sbkXI",
+          pages: 3,
           mulai: "2026-06-09T11:00:00",
           selesai: "2026-06-09T12:00:00",
         },
