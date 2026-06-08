@@ -277,7 +277,7 @@ const jadwalUjian = {
         },
         {
           nama: "PPKN",
-          folder: "pkn",
+          folder: "ppknXI",
           pages: 6,
           mulai: "2026-06-09T08:30:00",
           selesai: "2026-06-09T09:30:00",
