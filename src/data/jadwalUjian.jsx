@@ -165,7 +165,7 @@ const jadwalUjian = {
           folder: "ipasXI",
           pages: 2,
           mulai: "2026-06-03T08:30:00",
-          selesai: "2026-06-03T09:30:00",
+          selesai: "2026-06-08T12:00:00",
         },
         {
           nama: "Komunikasi",
@@ -179,7 +179,7 @@ const jadwalUjian = {
           folder: "kewirausahaanXI",
           pages: 4,
           mulai: "2026-06-03T11:00:00",
-          selesai: "2026-06-03T12:00:00",
+          selesai: "2026-06-08T12:00:00",
         },
       ],
     },
