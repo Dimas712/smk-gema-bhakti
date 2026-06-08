@@ -246,7 +246,7 @@ const jadwalUjian = {
           folder: "bindoXI",
           pages: 4,
           mulai: "2026-06-08T08:30:00",
-          selesai: "2026-06-08T09:30:00",
+          selesai: "2026-06-08T14:00:00",
         },
         {
           nama: "KKPI",
