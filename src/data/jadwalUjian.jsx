@@ -76,7 +76,7 @@ const jadwalUjian = {
           folder: "btqX",
           pages: 10,
           mulai: "2026-06-05T08:30:00",
-          selesai:"2026-06-05T10:30:00",
+          selesai:"2026-06-10T10:30:00",
         },
       ],
     },
