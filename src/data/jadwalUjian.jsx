@@ -272,7 +272,7 @@ const jadwalUjian = {
           nama: "Bahasa Inggris",
           folder: "inggrisXI",
           pages: 3,
-          mulai: "2026-06-09T07:30:00",
+          mulai: "2026-06-09T07:35:00",
           selesai: "2026-06-09T08:30:00",
         },
         {
